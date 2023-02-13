@@ -1,0 +1,15 @@
+
+//consutruimos la imagen del docker file
+
+
+ docker build --tag=eurekaserver:latest .
+ 
+ 
+ run 
+ docker container run --network minet -p8761:8761 eurekaserver:latest
+ 
+ 8763
+ 
+ 
+ docker container run --network minet --name eurekaserver -d employee-consumer
+

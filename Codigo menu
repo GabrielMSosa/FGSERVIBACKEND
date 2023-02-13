@@ -1,0 +1,28 @@
+
+            for (int i = 0; i < rolstr.size(); i++) {
+                for (int j = 0; j < mimenu.size(); j++) {
+                    System.out.println("el valor de menu con indice "+j+" vale "+mimenu.get(j).toString());
+                    
+                    Menu datain=new Menu();
+                    if(rolstr.get(i).toString()=="ROLE_FACTORY"){
+                        System.out.println("encontramos factory");
+                           
+                            if(j==0||j==6||j==4||j==5){
+                                datain.setId(mimenu.get(j).getId());
+                                datain.setIcon(mimenu.get(j).getIcon());
+                                datain.setRouterLink(mimenu.get(j).getRouterLink());
+                                datain.setText(mimenu.get(j).getText());
+                                datain.setChildren(mimenu.get(j).getChildren());
+                                
+                                System.out.println("entramos al if j");
+                                menurol.add(datain);                                
+                            }}
+                        
+                    if(rolstr.get(i).toString()=="ROLE_PROPIETARIOS"){
+                     System.out.println("encontramos propietarios");
+                            if(j==1||j==2||j==3||j==7){
+                                datain.setId(mimenu.get(j).getId());
+                                datain.setIcon(mimenu.get(j).getIcon());
+                                datain.setRouterLink(mimenu.get(j).getRouterLink());
+                                datain.setText(mimenu.get(j).getText());
+                                datain.setChildren(mimenu.get(j).getChildren());

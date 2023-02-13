@@ -1,0 +1,5 @@
+/home/gabriel/MIGRACIONMICROSERVICIOS/gatewayimplnew/src/main/java/com/sergio/bookstore/backend/user/dto/UserDto.java
+/home/gabriel/MIGRACIONMICROSERVICIOS/gatewayimplnew/src/main/java/com/sergio/bookstore/backend/user/BackendUserApplication.java
+/home/gabriel/MIGRACIONMICROSERVICIOS/gatewayimplnew/src/main/java/com/sergio/bookstore/backend/user/config/AuthFilter.java
+/home/gabriel/MIGRACIONMICROSERVICIOS/gatewayimplnew/src/main/java/com/sergio/bookstore/backend/user/config/WebClientConfig.java
+/home/gabriel/MIGRACIONMICROSERVICIOS/gatewayimplnew/src/main/java/com/sergio/bookstore/backend/user/dto/Authorities.java

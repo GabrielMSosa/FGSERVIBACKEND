@@ -1,0 +1,7 @@
+docker container run --name my-db --network minet  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=bootdb -d -p 3306:3306 mysql:latest
+
+
+ docker run --name db -d --network minet -e MYSQL_ROOT_PASSWORD=123 -p 3306:3306 mysql:latest
+
+
+para mysql en maquina local sudo service mysql stop

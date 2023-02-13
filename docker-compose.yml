@@ -1,0 +1,66 @@
+version: '3.8'
+services:
+  eureka-server:
+    image: eurekaserver #nombre de la imagen que hemos creado
+    restart: always
+    container_name: eurekaserver
+    ports:
+      - '8761:8761'
+    networks:
+      - "minet"
+  db:
+    image: mysql:latest
+    container_name: mysql-db2   
+    environment:
+      - MYSQL_ROOT_PASSWORD= root
+      - MYSQL_DATABASE= midatabase
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - "minet"
+            
+#  spring-cloud-gateway-service:
+ #   image: gatewayimpl #nombre de la imagen que hemos creado
+  #  restart: always
+   # container_name: gatewayimpl
+    #ports:
+     # - '8080:8080'
+    #networks:
+    #  - 'minet'
+  auth-microservice:
+    image: auth #nombre de la imagen que hemos creado
+    restart: always
+    container_name: auth
+    depends_on:                           #define dependencies of this app
+      - db                                #dependency name (which is defined with this name 'db' in this file earlier)
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db2:3306/customer?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mukit
+    networks:
+      - 'minet'
+ # factorymicroservices-microservice:
+#    image: factorymicroservices #nombre de la imagen que hemos creado
+ #   restart: always
+ #   container_name: factorymicroservices
+ #   networks:
+ #     - 'minet'
+ # farmerservice-microservice:
+ #   image: farmerservice #nombre de la imagen que hemos creado
+ #   restart: always
+ #   container_name: farmerservice
+ #   networks:
+ #     - 'minet'
+  
+  
+ # greeting-microservice:
+  #  image: greetmicroservice #nombre de la imagen que hemos creado
+ #   restart: always
+ #   container_name: greetmicroservice
+ #   networks:
+  #    - 'dockernetflix-network'
+networks:
+  minet:
+   driver: bridge #necesitamos crear en una red para alojar los servicios en ella y que puedan comunicarse entre sí
+ 

@@ -1,0 +1,87 @@
+version: '3.8'
+services:
+#  eureka-server:
+ #   image: eurekaserver
+ #   restart: always
+ #   container_name: eurekaserver
+#    ports:
+ #     - '8761:8761'
+ #   networks:
+      - "minet"
+  #spring-cloud-gateway-service:
+   # image: gateway #nombre de la imagen que hemos creado
+    #restart: always
+    #container_name: gateway
+    #ports:
+     # - '8080:8080'
+    #networks:
+    #  - 'minet'
+
+ # mysqldb:
+  #  image: mysql
+   # container_name: mysql
+    #restart: always
+   # environment:
+   #   MYSQL_DATABASE: bootdb
+   #   MYSQL_ROOT_PASSWORD: root
+   # ports:
+   #   - 3306:3306
+   # networks:
+   #   - minet
+   
+  #kafdrop:
+   # image: obsidiandynamics/kafdrop
+   # container_name: kafdrop
+   # restart: "no"
+   # networks:
+   #   - minet
+   # ports:
+   #   - "9000:9000"
+   # environment:
+   #   KAFKA_BROKERCONNECT: "kafka:29092"
+   # depends_on:
+   #   - "kafka"
+   zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - minet
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT_HOST://localhost:9092,PLAINTEXT://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - minet
+    
+  auth-microservice:
+    image: auth
+    container_name: auth
+    environment:
+      #EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      #EUREKASERVER_PORT: "8761"
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092 #esto es lo mas immportante con esto es que funciona
+    ports:
+      - 8086:8086
+
+    depends_on:
+      - kafka
+
+          
+    networks:
+      - minet
+      
+networks:
+  minet:
+    name: minet
+    external: true

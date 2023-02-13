@@ -1,0 +1,41 @@
+#spring:
+ # application:
+ #   name: eureka-server
+
+#server:
+#  port: 8673
+#eureka:
+  #client:
+    #registerWithEureka: false
+    #fetchRegistry: false
+#    service-url:
+#      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+      
+      
+           
+ #spring:
+#  application:
+ #   name: eureka-server
+ 
+#Tomcat Embedded Server Configuration
+# server: 
+  #port: 8761
+ 
+#Eureka Configuration Properties
+ #eureka:
+#      service-url:
+#       defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+       
+       
+       
+server:
+ port: 8761
+ 
+eureka:
+  client:
+    registerWithEureka: false #telling the server not to register himself in the service registry
+    fetchRegistry: false
+  
+  service-url:
+       defaultZone: http://host.docker.internal:8761/eureka/
+       #defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}

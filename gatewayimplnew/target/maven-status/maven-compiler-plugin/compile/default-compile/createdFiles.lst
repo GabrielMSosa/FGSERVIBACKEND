@@ -1,0 +1,8 @@
+com/sergio/bookstore/backend/user/dto/UserDto.class
+com/sergio/bookstore/backend/user/dto/Authorities$AuthoritiesBuilder.class
+com/sergio/bookstore/backend/user/dto/UserDto$UserDtoBuilder.class
+com/sergio/bookstore/backend/user/BackendUserApplication.class
+com/sergio/bookstore/backend/user/config/AuthFilter.class
+com/sergio/bookstore/backend/user/config/AuthFilter$Config.class
+com/sergio/bookstore/backend/user/dto/Authorities.class
+com/sergio/bookstore/backend/user/config/WebClientConfig.class

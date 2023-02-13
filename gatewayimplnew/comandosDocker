@@ -1,0 +1,11 @@
+
+//consutruimos la imagen del docker file
+
+
+ docker build --tag=gateway:latest .
+ 
+ 
+ run 
+ docker run -p8087:8087 farmerservice:latest
+ 
+ docker container run --network minet -p8080:8080 gateway:latest

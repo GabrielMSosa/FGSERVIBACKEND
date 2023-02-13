@@ -1,0 +1,6 @@
+## YAML Template.
+---
+spring:
+  application:
+    name: eureka-server
+  

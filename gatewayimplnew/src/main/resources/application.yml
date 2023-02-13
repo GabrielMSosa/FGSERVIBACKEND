@@ -1,0 +1,69 @@
+server:
+  port: 8080
+
+management:
+  endpoint.gateway.enabled: true
+  endpoints.web.exposure.include: gateway
+
+spring:
+  application.name: backend-user
+  cloud:
+    gateway:
+      discovery.locator.enabled: true
+      routes:
+        - id: service-menu
+          uri: lb://auth-service
+          predicates:
+            Path=/fronend/**
+          filters:
+            - AuthFilter
+            
+        - id: service-PData
+          uri: lb://auth-service
+          predicates:
+            Path=/pdata/**
+          filters:
+            - AuthFilter
+           
+        - id: service-farmer
+          uri: lb://farmer-service
+          predicates:
+            Path=/farmer/**
+          filters:
+            - AuthFilter
+        
+           
+        - id: service-unit
+          uri: lb://farmer-service
+          predicates:
+            Path=/unit/**
+          filters:
+            - AuthFilter
+        
+        - id: service-factory
+          uri: lb://factory-service
+          predicates:
+            Path=/factory/**
+          filters:
+            - AuthFilter
+        
+        - id: service-auth
+          uri: lb://auth-service
+          predicates:
+            Path=/auth/**
+        - id: service-auth
+          uri: lb://auth-service
+          predicates:
+            Path=/api/**
+          filters:
+           - AuthFilter
+            
+            
+            
+        
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:8761/eureka/
+      #defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+ 

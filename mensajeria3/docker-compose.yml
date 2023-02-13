@@ -1,0 +1,46 @@
+version: '3'
+
+
+
+services:
+
+  zookeeper-server:
+    image: 'bitnami/zookeeper:latest'
+    networks:
+      - minet
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+
+  kafka-server1:
+    image: 'bitnami/kafka:latest'
+    networks:
+      - minet
+    ports:
+      - '9092:9092'
+      - '29092:29092'
+    environment:
+      - KAFKA_BROKER_ID:1
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-server1:9092,PLAINTEXT_HOST://kafka-server1:29092
+    depends_on:
+      - zookeeper-server
+   
+  auth-microservice:
+    image: auth #nombre de la imagen que hemos creado
+    restart: always
+    container_name: auth
+    depends_on:      
+      - kafka-server1      
+    environment:
+      - KAFKA_SERVERS=kafka-server1:29092
+    networks:
+      - minet
+networks:
+  minet:
+    driver: bridge

@@ -1,0 +1,23 @@
+version: '3'
+services:
+    mysqldb:
+        image: mysql
+        container_name: mysqldbhost
+        restart: always
+        environment:
+            MYSQL_DATABASE: docker_test
+            MYSQL_ROOT_PASSWORD: mypass
+        ports:
+            - 3306:3306
+    web-app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: 
+            kshitij23/docker-demo:1.3
+        restart: on-failure
+        ports:
+            - "8070:8070"
+        depends_on:
+            - mysqldb
+

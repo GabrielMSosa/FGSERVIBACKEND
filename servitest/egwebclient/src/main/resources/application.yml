@@ -1,0 +1,23 @@
+## YAML Template.
+---
+ server:
+  port: 8083  #port number
+ 
+ eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      #defaultZone: http://host.docker.internal:8761/eureka/
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+    webclient:
+      enabled: true
+ spring:
+  application:
+    name: test-service  #service name
+ 
+ logging:
+  level:
+    com.example.howtodoinjava: DEBUG
+      
