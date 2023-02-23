@@ -1,0 +1,34 @@
+para ver todas las imagenes
+docker ps --all 
+
+para ver logs 
+docker logs --follow 4ce80093ac81
+
+para ver app conectadas a mi red
+docker network inspect minet
+
+para app
+docker stop festive_shamir
+
+iniciar app
+docker start elegant_nash
+
+
+docker logs --follow heuristic_turing
+
+borrar contenedor
+docker rm  modest_hellman
+
+
+
+
+
+
+borra imagenes
+docker rmi gateway,auth   
+
+para todos los contenedores
+docker stop $(docker ps -q)
+
+
+

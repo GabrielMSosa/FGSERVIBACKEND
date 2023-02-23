@@ -1,6 +1,13 @@
 server:
   port: 8080
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:8761/eureka/
+       # defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}      
+      #defaultZone: http://localhost:8083/eureka 
+      
 management:
   endpoint.gateway.enabled: true
   endpoints.web.exposure.include: gateway
@@ -59,11 +66,18 @@ spring:
            - AuthFilter
             
             
-            
+  #eureka:   
+
+ 
+   # serviceUrl:
+               
         
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://host.docker.internal:8761/eureka/
+#eureka:
+  #client:
+  #  register-with-eureka: false
+ #   serviceUrl:
+#       defaultZone: http://host.docker.internal:8761/eureka/
+      #dfaultZone: http://eurekaserver:8761/eureka/
       #defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+
  

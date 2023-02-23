@@ -32,10 +32,12 @@ server:
  port: 8761
  
 eureka:
+  instance:
+    hostname: eurekaserver
   client:
     registerWithEureka: false #telling the server not to register himself in the service registry
     fetchRegistry: false
   
   service-url:
-       defaultZone: http://host.docker.internal:8761/eureka/
-       #defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+      defaultZone: http://eurekaserver:8761/eureka/
+      #defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
