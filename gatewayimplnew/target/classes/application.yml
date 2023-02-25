@@ -64,6 +64,12 @@ spring:
             Path=/api/**
           filters:
            - AuthFilter
+        - id: service-pandora
+          uri: lb://pandora-service
+          predicates:
+            Path=/pandora/**
+          filters:
+            - AuthFilter
             
             
   #eureka:   
