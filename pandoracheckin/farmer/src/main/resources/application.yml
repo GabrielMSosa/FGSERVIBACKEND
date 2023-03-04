@@ -17,5 +17,20 @@
  logging:
   level:
     com.example.howtodoinjava: DEBUG
-      
-      
+ resilience4j:
+  timelimiter:
+    config:
+      default:
+        timeoutDuration: 4s
+        
+  circuitbreaker:
+    instances:
+      pandora-service:
+        registerHealthIndicator: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED      
