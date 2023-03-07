@@ -1,0 +1,14 @@
+
+//consutruimos la imagen del docker file
+
+
+ docker build --tag=pandoracentermicroservices:latest .
+ 
+ 
+ run 
+ docker run -p8085:8085 factorymicroservices:latest
+ 
+docker container run --network minet pandoracentermicroservices:latest
+
+
+select *from pandoradb.poscheckinfa as u where status='ACCEPT_FARMER' inner join pandoradb.pandoracheckfarmer as ar ON ar.id=u.pandora_check_id;

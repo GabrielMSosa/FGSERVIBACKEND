@@ -3,8 +3,8 @@
  
  eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 2
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 90
   client:
     serviceUrl:
       defaultZone: http://host.docker.internal:8761/eureka/

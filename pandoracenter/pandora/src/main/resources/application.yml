@@ -1,0 +1,80 @@
+## YAML Template.
+---
+#spring:
+#  application:
+#    name: auth-service
+#server:
+#  port: 8086
+#eureka:
+  #client:
+    #serviceUrl:
+      #defaultZone: http://eureka-server:8761/eureka
+      
+      
+      
+      
+# spring:
+ 
+#Tomcat Embedded Server Configuration
+# server: 
+#  port: 8086
+ 
+#Eureka Configuration Properties
+# eureka:
+#   client:
+     
+#     serviceUrl:
+#      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+      
+ server:
+  port: 6086  #port number
+  
+  
+ 
+ spring:
+  
+  
+  #kafka:
+    #bootstrap-servers: localhost:9092 
+    #bootstrap.servers: kafka:9092
+   # template:
+    #  default-topic: t.login.access
+    #producer:      
+    #  key-serializer: org.apache.kafka.common.serialization.StringSerializer
+     # value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      
+ eureka:   
+# application:
+#    name: auth-service
+
+  instance:
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 90
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:8761/eureka/
+      #defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+ 
+      #org.apache.kafka.common.serialization.StringSerializer  
+     # bootstrap-servers: ${KAFKA_SERVERS:kafka-server1:9092}
+     # key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      #value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      #properties:
+       # acks: all
+        #retries: 10
+       # retry.backoff.ms: 1000
+    #admin:
+     # properties:
+      #  bootstrap.servers: ${KAFKA_SERVERS:kafka:9092}
+
+      
+  
+
+ topic:
+  name: t.pandora.poscheckin
+ 
+ logging:
+  level:
+    com.example.howtodoinjava: DEBUG
+   
+      

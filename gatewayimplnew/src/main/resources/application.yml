@@ -70,6 +70,12 @@ spring:
             Path=/pandora/**
           filters:
             - AuthFilter
+        - id: pandoracenter-service
+          uri: lb://pandoracenter-service
+          predicates:
+            Path=/pandoraposcheckin/**
+          filters:
+            - AuthFilter
             
             
   #eureka:   
