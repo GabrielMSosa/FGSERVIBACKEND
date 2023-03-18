@@ -24,13 +24,19 @@ public class ServiPoscheckinFarmer implements IServiPoscheckinFarmer {
     private IRepoPoscheckiFar repofar;
 
     @Override
-    public List<PosCheckinFar> FindMydata(Long id) {
+    public List<PosCheckinFar>  FindMydataackfarmer(Long id) {
         
-       return repofar.findByIdUserfactoryandAckFarmer(id);
-       
-        
-        
+       return repofar.findByIdUserfactoryandAckFarmer(id);        
     }
+
+    @Override
+    public List<PosCheckinFar> FindMydataackfactory(Long id) {
+        
+    
+    return repofar.findByIdUserfactoryandAckFactory(id);
+    
+    }
+    
     
     
     

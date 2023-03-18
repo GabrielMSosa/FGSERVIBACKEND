@@ -15,6 +15,7 @@ public interface IServiPoscheckinFarmer {
     
     public PosCheckinFar SavebyFarmer(PosCheckinFar data);
     
-    public List<PosCheckinFar> FindMydata(Long id);
+    public List<PosCheckinFar> FindMydataackfarmer(Long id);
+    public List<PosCheckinFar> FindMydataackfactory(Long id);
     
 }

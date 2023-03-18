@@ -24,6 +24,10 @@ public interface IRepoPoscheckiFar extends JpaRepository<PosCheckinFar, Long> {
     List<PosCheckinFar> findByIdUserfactoryandAckFarmer(@Param("iduserfactory") Long iduserfactory );
     
     
+    @Query(value="select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE a.status='ACCEPT_FACTORY' AND b.id_userfactory=:iduserfactory",nativeQuery = true)
+    List<PosCheckinFar> findByIdUserfactoryandAckFactory(@Param("iduserfactory") Long iduserfactory );
+    
+    
     
 }
 

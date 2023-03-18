@@ -84,7 +84,15 @@ public class ControllerPoscheckin {
       ResponseEntity<List<PosCheckinFar>> FindByFarmer( @PathVariable Long id ){
                  
        return ResponseEntity.status(HttpStatus.OK)
-           .body(servi.FindMydata(id));
+           .body(servi.FindMydataackfarmer(id));
+      
+      }
+      //ese endpoint usamos para buscar los pendientes.
+        @GetMapping("/findackfactory/{id}")
+      ResponseEntity<List<PosCheckinFar>> FindByFactory( @PathVariable Long id ){
+                 
+       return ResponseEntity.status(HttpStatus.OK)
+           .body(servi.FindMydataackfactory(id));
       
       }
            
