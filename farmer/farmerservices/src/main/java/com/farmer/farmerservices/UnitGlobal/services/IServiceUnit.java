@@ -8,6 +8,7 @@ package com.farmer.farmerservices.UnitGlobal.services;
 import com.farmer.farmerservices.UnitGlobal.entity.UnitTransTransaccTe;
 import com.farmer.farmerservices.UnitGlobal.entity.UnitTransaccion;
 import com.farmer.farmerservices.campo.entity.TeNomDec;
+import com.farmer.farmerservices.campo.response.IPk;
 import java.util.List;
 
 /**
@@ -30,6 +31,8 @@ public String ScanUT(UnitTransaccion data);
 
 public List<UnitTransTransaccTe> ReturnAll(Long id);
 public List<UnitTransTransaccTe> ReturnAllxfarm(Long id);
+
+public List<UnitTransTransaccTe> ReturnAllxPk (IPk dta);
 
 }
 

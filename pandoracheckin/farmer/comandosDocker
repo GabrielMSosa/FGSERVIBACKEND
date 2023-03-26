@@ -8,4 +8,4 @@
  run 
  docker run -p8085:8085 factorymicroservices:latest
  
-docker container run --network minet -p8081:8081 pandorafarmer:latest
+docker container run --network minet  pandorafarmer:latest

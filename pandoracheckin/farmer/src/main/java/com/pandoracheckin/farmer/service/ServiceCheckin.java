@@ -5,6 +5,7 @@
 package com.pandoracheckin.farmer.service;
 
 
+import com.pandoracheckin.farmer.DTO.IPk;
 import com.pandoracheckin.farmer.DTO.PandoraCheckFarmer;
 import com.pandoracheckin.farmer.DTO.ResponsePersonalData;
 import com.pandoracheckin.farmer.UnitGlobal.entity.UnitTransTransaccTe;
@@ -41,7 +42,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ServiceCheckin implements IService{
         
-final String UNIT_URI = "https://farmer-service/unit/retall/";
+final String UNIT_URI = "https://farmer-service/unit/retallpk";//retallpk/ es el nuevo endpoint que creamos 
 final String PDATA_URI = "https://auth-service/pdata/";
 
    @Autowired
@@ -53,10 +54,10 @@ final String PDATA_URI = "https://auth-service/pdata/";
       @Override
       //@TimeLimiter(name = "pandora-service", fallbackMethod = "getDefaultPandora")
         @io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker (name = "pandora-service", fallbackMethod = "getDefaultPandora")
-    public List<PandoraCheckFarmer> ReturnAll(Long id,String token) {
+    public List<PandoraCheckFarmer> ReturnAll(IPk data,String token) {
         
            List<PandoraCheckFarmer> tosend=new ArrayList<>();
-        String url=UNIT_URI+id.toString();
+        String url=UNIT_URI;
              System.out.println("el valor de url vale"+url);
       //    String serverid="farmer-service";
         //  String homePageUrl = eurekaClient.getNextServerFromEureka(serverid, false).getHomePageUrl();
@@ -68,7 +69,7 @@ final String PDATA_URI = "https://auth-service/pdata/";
           
           
           
-		 vlor= restTemplate.exchange(url,HttpMethod.GET,new HttpEntity( createHttpHeaders(token)),
+		 vlor= restTemplate.exchange(url,HttpMethod.GET,new HttpEntity<IPk>(data, createHttpHeaders(token)),
 				new ParameterizedTypeReference<List<UnitTransTransaccTe>>(){}).getBody();
                  
                  System.out.println("el valor es "+vlor.toString());
@@ -78,7 +79,7 @@ final String PDATA_URI = "https://auth-service/pdata/";
                  pdata=this.SerachforId(action.getUnittrans().getIdUserfactory(),token);
                      System.out.println("el valor de pdata vale"+pdata.toString());
                  //--------------------
-                 data1.setId(id);
+                // data1.setId(id);
                  data1.setCant_te_certi_nominal_now(action.getTransate().getCant_te_certi_nominal_now());
                  data1.setCant_te_no_certi_nominal_now(action.getTransate().getCant_te_no_certi_nominal_now());
                  data1.setData_delivery_first(action.getTransate().getData_delivery_first());

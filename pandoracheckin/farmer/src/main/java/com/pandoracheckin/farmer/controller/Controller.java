@@ -5,6 +5,7 @@
 package com.pandoracheckin.farmer.controller;
 
 import com.netflix.discovery.EurekaClient;
+import com.pandoracheckin.farmer.DTO.IPk;
 import com.pandoracheckin.farmer.DTO.PandoraCheckFarmer;
 import com.pandoracheckin.farmer.UnitGlobal.entity.UnitTransTransaccTe;
 import com.pandoracheckin.farmer.service.ServiceCheckin;
@@ -24,6 +25,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,8 +44,8 @@ public class Controller {
     @Autowired
     private ServiceCheckin servi;
     
-    @GetMapping("/retall/{id}")
-      ResponseEntity<List<PandoraCheckFarmer>> ReturnAllUnit( @PathVariable Long id, @RequestHeader Map<String, String> headers ){
+    @PostMapping("/retall")
+      ResponseEntity<List<PandoraCheckFarmer>> ReturnAllUnit( @RequestBody IPk data, @RequestHeader Map<String, String> headers ){
            
         System.out.println("eader values: {}"+ headers);
        String token=headers.get("authorization");
@@ -53,7 +56,7 @@ public class Controller {
 	//			UnitTransTransaccTe[].class);
         
           return ResponseEntity.status(HttpStatus.OK)
-           .body( servi.ReturnAll(id,token));
+           .body( servi.ReturnAll(data,token));
       
       
       

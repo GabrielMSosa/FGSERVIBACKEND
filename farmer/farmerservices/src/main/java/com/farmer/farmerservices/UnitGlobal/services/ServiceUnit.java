@@ -20,6 +20,7 @@ import com.farmer.farmerservices.campo.repository.IRepoDataUserCampo;
 import com.farmer.farmerservices.campo.repository.IRepoMytruck;
 import com.farmer.farmerservices.campo.repository.IRepoTeNominalDeclarado;
 import com.farmer.farmerservices.campo.repository.IRepoTransaccionTe;
+import com.farmer.farmerservices.campo.response.IPk;
 import com.farmer.farmerservices.factory.repository.IRepoDatoUser;
 import com.farmer.farmerservices.repository.UserRepository;
 import java.util.ArrayList;
@@ -149,6 +150,15 @@ public class ServiceUnit implements IServiceUnit{
     
     Boolean flag=false;
 
+    @Override
+    public List<UnitTransTransaccTe> ReturnAllxPk(IPk dta) {
+       return repobackup.findByIdUserfactoryandAckFarmer(dta.getIduserfactory(), dta.getIduserfarmer());
+    }
+
+    
+    
+    
+    
     @Override
     public List<UnitTransTransaccTe> ReturnAll(Long id) {
 

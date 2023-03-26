@@ -8,6 +8,7 @@ import com.farmer.farmerservices.UnitGlobal.entity.UnitTransTransaccTe;
 import com.farmer.farmerservices.UnitGlobal.entity.UnitTransaccion;
 import com.farmer.farmerservices.UnitGlobal.services.IServiceUnit;
 import com.farmer.farmerservices.campo.entity.TeNomDec;
+import com.farmer.farmerservices.campo.response.IPk;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -64,15 +65,18 @@ public class ControllerUnit {
       
       @GetMapping("/retall/{id}")
       ResponseEntity<List<UnitTransTransaccTe>> ReturnAllUnit( @PathVariable Long id  ){
-          
-        
-        
           return ResponseEntity.status(HttpStatus.OK)
            .body( servi.ReturnAll(id));
       
-      
+      }
+      @PostMapping("/retallpk")
+      ResponseEntity<List<UnitTransTransaccTe>> ReturnAllUnitPk( @RequestBody IPk data  ){
+          return ResponseEntity.status(HttpStatus.OK)
+           .body( servi.ReturnAllxPk(data));
       
       }
+      
+      
       @GetMapping("/retallffarm/{id}")
       ResponseEntity<List<UnitTransTransaccTe>> ReturnAllUnitfarm( @PathVariable Long id  ){
           
