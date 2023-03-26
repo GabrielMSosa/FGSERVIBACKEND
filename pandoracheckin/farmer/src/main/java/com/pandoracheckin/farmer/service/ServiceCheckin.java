@@ -69,7 +69,7 @@ final String PDATA_URI = "https://auth-service/pdata/";
           
           
           
-		 vlor= restTemplate.exchange(url,HttpMethod.GET,new HttpEntity<IPk>(data, createHttpHeaders(token)),
+		 vlor= restTemplate.exchange(url,HttpMethod.POST,new HttpEntity<IPk>(data, createHttpHeaders(token)),
 				new ParameterizedTypeReference<List<UnitTransTransaccTe>>(){}).getBody();
                  
                  System.out.println("el valor es "+vlor.toString());
