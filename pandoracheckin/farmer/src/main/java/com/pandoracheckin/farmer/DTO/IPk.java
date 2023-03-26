@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class IPk implements Serializable  {
     
-        private Long idUserfactory;
-        private Long idUserfarmer;
+        private Long iduserfactory;
+        private Long iduserfarmer;
     
     
     
