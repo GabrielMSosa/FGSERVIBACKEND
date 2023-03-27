@@ -5,6 +5,7 @@
 package com.pandoracenter.pandora.controller;
 
 import com.pandoracenter.pandora.entity.EStatus;
+import com.pandoracenter.pandora.entity.IPk;
 import com.pandoracenter.pandora.entity.PosCheckinFar;
 import com.pandoracenter.pandora.service.ServiPoscheckinFarmer;
 import java.util.List;
@@ -33,9 +34,31 @@ public class ControllerPoscheckin {
     @Autowired
     private ServiPoscheckinFarmer servi;
     
+    
+    @GetMapping("/allposcheckin")
+     ResponseEntity<List<PosCheckinFar>> ReturnAllfarmer(){
+    
+          return ResponseEntity.status(HttpStatus.OK)
+           .body(servi.ReturnAllPoscheckin());
+      
+     }
+     
+     
+     
+     @GetMapping("/allposcheckinpk")
+     ResponseEntity<List<PosCheckinFar>> ReturnAllfarmerxPk(@PathVariable IPk data){
+    
+          return ResponseEntity.status(HttpStatus.OK)
+           .body(servi.ReturnAllPoscheckinxPk(data));
+      
+     }
+     
+     
+     
+    
       @PostMapping("/savebyfarmer")
       ResponseEntity<PosCheckinFar> SaveByFarmer( @RequestBody PosCheckinFar data ){
-           
+          PosCheckinFar returnvalue= new PosCheckinFar();
           System.out.println("el valor ingresado es "+ data.toString());
           
           String tipostatus=data.getStatus();
@@ -72,11 +95,18 @@ public class ControllerPoscheckin {
           
           //ResponseEntity<UnitTransTransaccTe[]> responseEntity =  restTemplate.getForEntity(url,
 	//			UnitTransTransaccTe[].class);
+        returnvalue=servi.SavebyFarmer(data);
+          if (returnvalue==null) {
+               return ResponseEntity.status(HttpStatus.CONFLICT).body(data);
+              
+          }
+          else{
+        
         
           return ResponseEntity.status(HttpStatus.OK)
-           .body(servi.SavebyFarmer(data));
+           .body(returnvalue);
       
-      
+          }
       
       }
     

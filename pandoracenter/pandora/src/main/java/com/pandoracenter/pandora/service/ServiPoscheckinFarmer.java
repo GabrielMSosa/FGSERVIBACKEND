@@ -4,12 +4,15 @@
  */
 package com.pandoracenter.pandora.service;
 
+import com.pandoracenter.pandora.entity.IPk;
 import com.pandoracenter.pandora.entity.PosCheckinFar;
 import com.pandoracenter.pandora.repository.IRepoPoscheckiFar;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 /**
@@ -36,6 +39,16 @@ public class ServiPoscheckinFarmer implements IServiPoscheckinFarmer {
     return repofar.findByIdUserfactoryandAckFactory(id);
     
     }
+
+    @Override
+    public List<PosCheckinFar> ReturnAllPoscheckin() {
+        return repofar.findAll();
+    }
+
+    @Override
+    public List<PosCheckinFar> ReturnAllPoscheckinxPk(IPk data) {
+        return repofar.findAllxIPk(data.getIduserfactory(),data.getIduserfarmer());
+    }
     
     
     
@@ -46,13 +59,14 @@ public class ServiPoscheckinFarmer implements IServiPoscheckinFarmer {
     @Override
     public PosCheckinFar SavebyFarmer(PosCheckinFar data) {
         PosCheckinFar x = new PosCheckinFar();
-
+        PosCheckinFar y=  new PosCheckinFar();
         
           try {
           x= repofar.save(data);
         } catch (DataAccessException ex) {
 
             System.out.println(ex.getCause().getMessage());
+              return y;
         }
         
         

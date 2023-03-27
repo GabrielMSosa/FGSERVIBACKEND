@@ -4,6 +4,7 @@
  */
 package com.pandoracenter.pandora.service;
 
+import com.pandoracenter.pandora.entity.IPk;
 import com.pandoracenter.pandora.entity.PosCheckinFar;
 import java.util.List;
 
@@ -17,5 +18,6 @@ public interface IServiPoscheckinFarmer {
     
     public List<PosCheckinFar> FindMydataackfarmer(Long id);
     public List<PosCheckinFar> FindMydataackfactory(Long id);
-    
+    public List<PosCheckinFar> ReturnAllPoscheckin();
+    public List<PosCheckinFar> ReturnAllPoscheckinxPk(IPk data);
 }
