@@ -4,6 +4,7 @@
  */
 package com.pandoracenter.pandora.service;
 
+import com.pandoracenter.pandora.entity.IPKstatus;
 import com.pandoracenter.pandora.entity.IPk;
 import com.pandoracenter.pandora.entity.PosCheckinFar;
 import java.util.List;
@@ -20,4 +21,14 @@ public interface IServiPoscheckinFarmer {
     public List<PosCheckinFar> FindMydataackfactory(Long id);
     public List<PosCheckinFar> ReturnAllPoscheckin();
     public List<PosCheckinFar> ReturnAllPoscheckinxPk(IPk data);
+
+
+    public List<PosCheckinFar> ReturnAllPoscheckinxPkandstatus(IPKstatus data);
+
+    public List<PosCheckinFar> FindMydataallstatus(Long id);
+
+    public PosCheckinFar SavebyFactory(PosCheckinFar data);
+    public PosCheckinFar ChangebyFactory(PosCheckinFar data);
+    public PosCheckinFar AuditbyFarmerAccepted(PosCheckinFar data);
+    public PosCheckinFar AuditbyFarmerRejected(PosCheckinFar data);
 }

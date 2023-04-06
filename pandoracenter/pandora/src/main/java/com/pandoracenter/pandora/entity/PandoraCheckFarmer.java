@@ -44,6 +44,9 @@ public class PandoraCheckFarmer {
         @Column(name = "idUserfarmer")
        private Long idUserfarmer;
             
+       @Column(name = "status",columnDefinition = "varchar(255) default 'NONE_PANDORA'")
+       @NotNull
+       private String status;
          
          @NotNull
        @GeneratedValue(generator="system-uuid")

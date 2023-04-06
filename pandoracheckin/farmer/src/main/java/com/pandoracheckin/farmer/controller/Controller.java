@@ -45,7 +45,7 @@ public class Controller {
     private ServiceCheckin servi;
     
     @PostMapping("/retall")
-      ResponseEntity<List<PandoraCheckFarmer>> ReturnAllUnit( @RequestBody IPk data, @RequestHeader Map<String, String> headers ){
+      ResponseEntity<List<PandoraCheckFarmer>> ReturnAllUnitWvalidationPoscheckin( @RequestBody IPk data, @RequestHeader Map<String, String> headers ){
            
         System.out.println("eader values: {}"+ headers);
        String token=headers.get("authorization");
