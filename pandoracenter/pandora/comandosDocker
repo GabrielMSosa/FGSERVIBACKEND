@@ -10,6 +10,12 @@
  
 docker container run --network minet pandoracentermicroservices:latest
 
+docker container run --network minet pandoracentermicroservicrecaconalpinep:latest
 
 select *from pandoradb.poscheckinfa as u where status='ACCEPT_FARMER' inner join pandoradb.pandoracheckfarmer as ar ON ar.id=u.pandora_check_id;
 select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE a.status='ACCEPT_FACTORY' AND b.transacc_id: '13b8ab97-8e89-42c9-9f4f-aa7c1f2a184e';
+select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE  b.transacc_id= UNHEX('48bbfe40-d7ce-40b8-8610-d85a7ac818a6');
+
+select * from pandoradb.pandoracheckfarmer as b WHERE  b.transacc_id=  unhex(replace("13b8ab97-8e89-42c9-9f4f-aa7c1f2a184e", '-', ''));
+
+select UUID_TO_BIN(transacc_id) as uuid from pandoradb.pandoracheckfarmer;

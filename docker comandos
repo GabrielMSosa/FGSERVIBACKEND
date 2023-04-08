@@ -31,4 +31,21 @@ para todos los contenedores
 docker stop $(docker ps -q)
 
 
+###COMANDOS PARA EJECUTAR LOS DOCKER FILE QUE ESTAN OPTIMIZADOS
+Hace el mavn clean package -DskiptTest solo corriendo el comando de abajo
+EJECUTAMOS DE LA CARPETA RAIZ FGSERVICEBACKEDN
+
+MSCV-PANDORACENTER:
+------------------
+docker build -t pandoracentermicroservicrecaconalpinep:latest . -f ./pandoracenter/pandora/
+Dockerfile
+docker container run --network minet pandoracentermicroservicrecaconalpinep:latest
+
+MSCV-AUTH:
+----------
+docker build -t authservice:latest . -f ./auth2/auth/Dockerfile Dockerfile
+docker container run --network minet  authservice:latest
+
+
+
 
