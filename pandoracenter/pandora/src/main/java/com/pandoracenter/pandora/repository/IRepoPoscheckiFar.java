@@ -18,13 +18,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IRepoPoscheckiFar extends JpaRepository<PosCheckinFar, Long> {
 
-    @Query(value="select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE  b.id_userfactory=:iduserfactory",nativeQuery = true)
+    //LA FUNCION DE ABAJO TRAE CUANDO PRESIONAMOS MEDIR TRAEMOS TODOS SEGUN ID USER FACTORY MENOS EL QUE TENGA ESTADO ACCEPT_CHECKIN
+    @Query(value="select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE  b.id_userfactory=:iduserfactory AND a.status!='ACCEPT_CHECKIN';",nativeQuery = true)
     List<PosCheckinFar> findByIdUserfactoryAllstatus(@Param("iduserfactory") Long iduserfactory );
     
     @Query(value="select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE a.status='ACCEPT_FARMER' AND b.id_userfactory=:iduserfactory",nativeQuery = true)
     List<PosCheckinFar> findByIdUserfactoryandAckFarmer(@Param("iduserfactory") Long iduserfactory );
     
-    
+    //el metodo de abajo busca los poscheckin por id factory con estado accept_factory
     @Query(value="select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE a.status='ACCEPT_FACTORY' AND b.id_userfactory=:iduserfactory",nativeQuery = true)
     List<PosCheckinFar> findByIdUserfactoryandAckFactory(@Param("iduserfactory") Long iduserfactory );
     

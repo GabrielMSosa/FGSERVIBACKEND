@@ -31,4 +31,6 @@ public interface IServiPoscheckinFarmer {
     public PosCheckinFar ChangebyFactory(PosCheckinFar data);
     public PosCheckinFar AuditbyFarmerAccepted(PosCheckinFar data);
     public PosCheckinFar AuditbyFarmerRejected(PosCheckinFar data);
+
+    public PosCheckinFar SaveGeneric(PosCheckinFar data);
 }

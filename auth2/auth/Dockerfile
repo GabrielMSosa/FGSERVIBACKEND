@@ -12,7 +12,7 @@ RUN ./mvnw clean package -DskipTests
 FROM openjdk:17-jdk-alpine
 
 WORKDIR /fgservice
-
+EXPOSE 8086
 COPY --from=builder /fgservice/auth2/auth/target/auth-0.0.1-SNAPSHOT.jar .
 
 ENTRYPOINT ["java", "-jar", "auth-0.0.1-SNAPSHOT.jar"]

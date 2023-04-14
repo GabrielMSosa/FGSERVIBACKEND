@@ -19,3 +19,6 @@ select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarm
 select * from pandoradb.pandoracheckfarmer as b WHERE  b.transacc_id=  unhex(replace("13b8ab97-8e89-42c9-9f4f-aa7c1f2a184e", '-', ''));
 
 select UUID_TO_BIN(transacc_id) as uuid from pandoradb.pandoracheckfarmer;
+
+select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE  b.id_userfactory=2
+select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE  b.id_userfactory=2 AND a.status!='ACCEPT_CHECKIN';

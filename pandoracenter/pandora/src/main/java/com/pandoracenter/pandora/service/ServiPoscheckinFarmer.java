@@ -13,8 +13,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -40,6 +39,11 @@ public class ServiPoscheckinFarmer implements IServiPoscheckinFarmer {
     
     return repofar.findByIdUserfactoryandAckFactory(id);
     
+    }
+
+    @Override
+    public PosCheckinFar SaveGeneric(PosCheckinFar data) {
+        return repofar.save(data);
     }
 
     @Override

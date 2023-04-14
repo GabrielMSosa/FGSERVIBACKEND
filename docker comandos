@@ -37,14 +37,21 @@ EJECUTAMOS DE LA CARPETA RAIZ FGSERVICEBACKEDN
 
 MSCV-PANDORACENTER:
 ------------------
-docker build -t pandoracentermicroservicrecaconalpinep:latest . -f ./pandoracenter/pandora/
-Dockerfile
-docker container run --network minet pandoracentermicroservicrecaconalpinep:latest
+docker build --name pandoracenter-service -t pandoracenter-service . -f ./pandoracenter/pandora/Dockerfile
+
+docker container run --name pandoracenter-service --network minet -d pandoracenter-service
+ 
+
 
 MSCV-AUTH:
 ----------
 docker build -t authservice:latest . -f ./auth2/auth/Dockerfile Dockerfile
 docker container run --network minet  authservice:latest
+
+MSVC-FARMER
+docker build -t farmerservice:latest . -f ./farmer/farmerservices/Dockerfile
+
+docker container run --network minet -d farmerservice:latest
 
 
 
