@@ -49,9 +49,28 @@ docker build -t authservice:latest . -f ./auth2/auth/Dockerfile Dockerfile
 docker container run --network minet  authservice:latest
 
 MSVC-FARMER
+-----------
 docker build -t farmerservice:latest . -f ./farmer/farmerservices/Dockerfile
 
 docker container run --network minet -d farmerservice:latest
+
+MSCV-CHECKOUT
+docker build  -t checkout-service . -f ./Checkoutpandora/checkout/Dockerfile
+docker container run --name checkout-service --network minet -p8071:8071 -d checkout-service
+
+
+
+MSVC-GATEWAY 
+por el momento con el comando de abajo hay que actualizar
+docker build  -t gateway-service . -f ./Dockerfile
+
+
+docker container run --name gateway-service --network minet -p8080:8080 -d gateway-service
+
+
+
+
+
 
 
 

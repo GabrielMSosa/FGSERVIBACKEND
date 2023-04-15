@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/pandoraposcheckin")
-
 public class ControllerPoscheckin {
     @Autowired
     private ServiPoscheckinFarmer servi;
@@ -50,7 +49,7 @@ public class ControllerPoscheckin {
      
      
      @PostMapping("/allposcheckinpk")
-     ResponseEntity<List<PosCheckinFar>> ReturnAllfarmerxPk(@RequestBody IPk data){
+     ResponseEntity<List<PosCheckinFar>> ReturnAllfarmerxPk(@RequestBody IPk data@RequestBody IPk data){
     
           return ResponseEntity.status(HttpStatus.OK)
            .body(servi.ReturnAllPoscheckinxPk(data));

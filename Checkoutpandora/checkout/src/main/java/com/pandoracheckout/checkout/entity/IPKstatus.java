@@ -1,4 +1,4 @@
-package com.pandoracenter.pandora.entity;
+package com.pandoracheckout.checkout.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

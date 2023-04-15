@@ -1,4 +1,5 @@
-package com.pandoracenter.pandora.entity;
+package com.pandoracheckout.checkout.entity;
+
 
 public enum EStatus {
   ACCEPT_FARMER,
@@ -17,7 +18,6 @@ public enum EStatus {
   REJECT_FARMER_TRUCK_IN,
   REJECT_FARMER_WATER_DG,
   REJECT_TRUCK_IN_ACCEPTED_WATER_DG,
-
   REJECT_WATER_DG_ACCEPTED_TRUCK_IN,
   REJECT_TRUCK_IN_AND_WATER_DG,
 

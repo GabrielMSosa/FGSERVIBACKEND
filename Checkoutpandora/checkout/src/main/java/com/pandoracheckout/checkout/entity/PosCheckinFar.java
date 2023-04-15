@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.pandoracenter.pandora.entity;
+package com.pandoracheckout.checkout.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
