@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,21 +34,21 @@ public class Mytruck {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    
-    
-    
-    @NotNull
+
+
+
+
+    @NotEmpty
     @Column(name = "brand_camion")
     private String brand_camion;//marca de camion
-    
-    @NotNull
+
+    @NotEmpty
     @Column(name = "id_truck")
     private String id_truck;
-    
-    @NotNull
+
+    @NotEmpty
     @Column(name = "name_carrier")
-    private String name_carrier; 
+    private String name_carrier;
 
     @NotNull
     @Column(name = "weigh_truck_in")

@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,9 +32,9 @@ public class PandoraCheckFarmer {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-       private Long id;  
-    
-       @NotNull
+       private Long id;
+
+         @NotEmpty
        @Column(name = "name")
        private String name;
        
@@ -45,7 +46,7 @@ public class PandoraCheckFarmer {
        private Long idUserfarmer;
             
        @Column(name = "status",columnDefinition = "varchar(255) default 'NONE_PANDORA'")
-       @NotNull
+       @NotEmpty
        private String status;
          
          @NotNull
@@ -63,14 +64,14 @@ public class PandoraCheckFarmer {
          
          @NotNull
          @Column(name = "cant_te_palo_nominal_now")
-       private Float cant_te_palo_nominal_now;     
-       
-            @NotNull
+       private Float cant_te_palo_nominal_now;
+
+            @NotEmpty
             @Column(name = "data_delivery_first")
             @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
-       private String data_delivery_first;  
-           
-            @NotNull
+       private String data_delivery_first;
+
+            @NotEmpty
             @Column(name = "data_delivery_last")
             @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
         private String data_delivery_last;     

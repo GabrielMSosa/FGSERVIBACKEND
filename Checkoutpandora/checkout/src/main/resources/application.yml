@@ -12,7 +12,7 @@ eureka:
 
 spring:
   application:
-    name: checkout-service  #service name
+    name: pandoraout-service #service name
 
 logging:
   level:
@@ -25,7 +25,7 @@ resilience4j:
 
   circuitbreaker:
     instances:
-      pandora-service:
+      pandoraout-service:
         registerHealthIndicator: true
         failureRateThreshold: 50
         minimumNumberOfCalls: 5

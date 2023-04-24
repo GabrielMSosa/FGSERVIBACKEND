@@ -5,6 +5,10 @@
 package com.pandoracheckin.farmer.controller;
 
 import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.converters.Auto;
+import com.pandoracheckin.farmer.ClienHttp.ClientAuth;
+import com.pandoracheckin.farmer.ClienHttp.ClientFarmer;
+import com.pandoracheckin.farmer.ClienHttp.PandoraCenterClient;
 import com.pandoracheckin.farmer.DTO.IPk;
 import com.pandoracheckin.farmer.DTO.PandoraCheckFarmer;
 import com.pandoracheckin.farmer.UnitGlobal.entity.UnitTransTransaccTe;
@@ -40,7 +44,12 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/pandora")
 public class Controller {
- 
+    @Autowired
+    private ClientFarmer client;
+    @Autowired
+    private ClientAuth clientauth;
+@Autowired
+private PandoraCenterClient clientpand;
     @Autowired
     private ServiceCheckin servi;
     
@@ -50,15 +59,31 @@ public class Controller {
         System.out.println("eader values: {}"+ headers);
        String token=headers.get("authorization");
         System.out.println("el valor de token vale"+token);
-       
-          
-          //ResponseEntity<UnitTransTransaccTe[]> responseEntity =  restTemplate.getForEntity(url,
-	//			UnitTransTransaccTe[].class);
-        
+
           return ResponseEntity.status(HttpStatus.OK)
            .body( servi.ReturnAll(data,token));
-      
-      
-      
       }
+      @PostMapping("/all")
+      ResponseEntity<?> Testall( @RequestBody IPk data){
+          return ResponseEntity.status(HttpStatus.OK)
+                  .body( client.TraeUnitporIPk(data));
+      }
+
+      @GetMapping("/data/{id}")
+      ResponseEntity<?> Testpdata( @PathVariable Long id,@RequestHeader Map<String, String> headers){
+          System.out.println("eader values: {}"+ headers);
+          String token=headers.get("authorization");
+          System.out.println("el valor de token vale"+token);
+          return ResponseEntity.status(HttpStatus.OK)
+                  .body( clientauth.AllMenuFactory(token,id));
+      }
+
+    @PostMapping("/allcheck")
+    ResponseEntity<?> Testall2( @RequestBody IPk data){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body( clientpand.traerdata(data));
+    }
+
+
+
 }

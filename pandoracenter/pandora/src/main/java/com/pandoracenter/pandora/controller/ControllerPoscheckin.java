@@ -4,19 +4,16 @@
  */
 package com.pandoracenter.pandora.controller;
 
-import com.pandoracenter.pandora.entity.EStatus;
-import com.pandoracenter.pandora.entity.IPKstatus;
-import com.pandoracenter.pandora.entity.IPk;
-import com.pandoracenter.pandora.entity.PosCheckinFar;
+import com.pandoracenter.pandora.entity.*;
 import com.pandoracenter.pandora.service.ServiPoscheckinFarmer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 /**
  *
@@ -49,8 +48,8 @@ public class ControllerPoscheckin {
      
      
      @PostMapping("/allposcheckinpk")
-     ResponseEntity<List<PosCheckinFar>> ReturnAllfarmerxPk(@RequestBody IPk data@RequestBody IPk data){
-    
+     ResponseEntity<List<PosCheckinFar>> ReturnAllfarmerxPk(@RequestBody IPk data){
+
           return ResponseEntity.status(HttpStatus.OK)
            .body(servi.ReturnAllPoscheckinxPk(data));
       
@@ -98,7 +97,11 @@ public class ControllerPoscheckin {
         }}
 
     @PostMapping("/return/allstatusandid")
-    ResponseEntity<List<PosCheckinFar>> ReturnAllfarmerxPkandeStatus(@RequestBody IPKstatus data){
+    ResponseEntity<?> ReturnAllfarmerxPkandeStatus( @Valid @RequestBody IPKstatus data,BindingResult result){
+        if (result.hasErrors()){
+            return ValidateData(result);
+        }
+
         List<PosCheckinFar> dtaout=new ArrayList<>();
                 if (data.getStatus().equals("accept_farmer")||data.getStatus().equals(EStatus.ACCEPT_FARMER.toString())){
 
@@ -162,6 +165,136 @@ public class ControllerPoscheckin {
                 .body(servi.ReturnAllPoscheckinxPkandstatus(data));
     }
 
+    @PostMapping("/return/allstatussub")
+    ResponseEntity<?> ReturnAllfarmerxPkandeStatus(@Valid @RequestBody IPkSubstatus data, BindingResult result){
+        if (result.hasErrors()){
+            return ValidateData(result);
+        }
+        List<PosCheckinFar> dtaout=new ArrayList<>();
+
+        if (data.getStatus().equals("accept_farmer")||data.getStatus().equals(EStatus.ACCEPT_FARMER.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER.toString());}
+
+        if (data.getStatus().equals("accept_factory")||data.getStatus().equals(EStatus.ACCEPT_FACTORY.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY.toString());}
+
+        if (data.getStatus().equals("reject_farmer")||data.getStatus().equals(EStatus.REJECT_FARMER.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER.toString());}
+
+        if (data.getStatus().equals("reject_factory")||data.getStatus().equals(EStatus.REJECT_FACTORY.toString())){
+
+            data.setStatus(EStatus.REJECT_FACTORY.toString());}
+
+        if (data.getStatus().equals("accept_factory_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("accept_factory_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_WATER_DG.toString());}
+
+        if (data.getStatus().equals("accept_farmer_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("accept_farmer_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_WATER_DG.toString());}
+
+        if (data.getStatus().equals("reject_farmer_truck_in")||data.getStatus().equals(EStatus.REJECT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("reject_farmer_water_dg")||data.getStatus().equals(EStatus.REJECT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_WATER_DG.toString());}
+
+        if (data.getStatus().equals("reject_truck_in_accepted_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString());}
+
+        if (data.getStatus().equals("reject_water_dg_accepted_truck_in")||data.getStatus().equals(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("reject_truck_in_and_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString());}
+
+        if (data.getStatus().equals("accept_checkin")||data.getStatus().equals(EStatus.ACCEPT_CHECKIN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_CHECKIN.toString());}
+        //-------------------------------------------------------
+        if (data.getSubstatus().equals("accept_farmer")||data.getStatus().equals(EStatus.ACCEPT_FARMER.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER.toString());}
+
+        if (data.getSubstatus().equals("accept_factory")||data.getStatus().equals(EStatus.ACCEPT_FACTORY.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY.toString());}
+
+        if (data.getSubstatus().equals("reject_farmer")||data.getStatus().equals(EStatus.REJECT_FARMER.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER.toString());}
+
+        if (data.getSubstatus().equals("reject_factory")||data.getStatus().equals(EStatus.REJECT_FACTORY.toString())){
+
+            data.setStatus(EStatus.REJECT_FACTORY.toString());}
+
+        if (data.getSubstatus().equals("accept_factory_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("accept_factory_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("accept_farmer_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("accept_farmer_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("reject_farmer_truck_in")||data.getStatus().equals(EStatus.REJECT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("reject_farmer_water_dg")||data.getStatus().equals(EStatus.REJECT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("reject_truck_in_accepted_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("reject_water_dg_accepted_truck_in")||data.getStatus().equals(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("reject_truck_in_and_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("accept_checkin")||data.getStatus().equals(EStatus.ACCEPT_CHECKIN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_CHECKIN.toString());}
+
+        else{
+            return ResponseEntity.badRequest().body(Collections.singletonMap("Error","Status fuera de rango"));
+
+        }
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.ReturnAllPoscheckinxPkandsubstatus(data));
+    }
+
+
+
 
     @PostMapping("/audit/farmeraccept")
     ResponseEntity<PosCheckinFar> AuditByFarmer( @RequestBody PosCheckinFar data ){
@@ -212,7 +345,11 @@ public class ControllerPoscheckin {
 
 
     @PostMapping("/audit/master")
-    ResponseEntity<PosCheckinFar> AuditMaster( @RequestBody PosCheckinFar data ){
+    ResponseEntity<?> AuditMaster( @RequestBody PosCheckinFar data,BindingResult result ){
+        if (result.hasErrors()){
+            return ValidateData(result);
+        }
+
         if (IsInvalid(data)==false){
         PosCheckinFar data2=new PosCheckinFar();
         PosCheckinFar data1=new PosCheckinFar();
@@ -230,8 +367,12 @@ public class ControllerPoscheckin {
 
 
     @PostMapping("/savebyfarmer/farmer")
-      ResponseEntity<PosCheckinFar> SaveByFarmer( @RequestBody PosCheckinFar data ){
-          PosCheckinFar returnvalue= new PosCheckinFar();
+      ResponseEntity<?> SaveByFarmer(@Valid @RequestBody PosCheckinFar data,  BindingResult result ){
+
+        if (result.hasErrors()){
+            return ValidateData(result);
+        }
+        PosCheckinFar returnvalue= new PosCheckinFar();
           System.out.println("el valor ingresado es "+ data.toString());
           
           String tipostatus=data.getStatus();
@@ -556,4 +697,15 @@ public class ControllerPoscheckin {
 
 
     }
+    private static ResponseEntity<Map<String, String>> ValidateData(BindingResult result) {
+        Map<String,String> errores= new HashMap<>();
+        result.getFieldErrors().forEach(err->{
+            errores.put(err.getField(),"El campo"+" "+err.getField()+" "+err.getDefaultMessage());
+
+        });
+        return ResponseEntity.badRequest().body(errores);
+    }
+
+
+
 }

@@ -13,7 +13,7 @@ management:
   endpoints.web.exposure.include: gateway
 
 spring:
-  application.name: gateway-service
+  application.name: backend-user
   cloud:
     gateway:
       discovery.locator.enabled: true
@@ -53,6 +53,13 @@ spring:
             Path=/factory/**
           filters:
             - AuthFilter
+
+        - id: service-pandoraout
+          uri: lb://pandoraout-service
+          predicates:
+            Path=/pandoraout/**
+          filters:
+            - AuthFilter
         
         - id: service-auth
           uri: lb://auth-service
@@ -76,12 +83,8 @@ spring:
             Path=/pandoraposcheckin/**
           filters:
             - AuthFilter
-        - id: checkout-service
-          uri: lb://checkout-service
-          predicates:
-            Path=/checkout/**
-          filters:
-            - AuthFilter
+
+
             
             
   #eureka:   
