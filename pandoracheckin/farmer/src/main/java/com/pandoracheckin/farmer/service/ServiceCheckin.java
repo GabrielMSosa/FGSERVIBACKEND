@@ -14,10 +14,8 @@ import com.pandoracheckin.farmer.DTO.PosCheckinFar;
 import com.pandoracheckin.farmer.DTO.ResponsePersonalData;
 import com.pandoracheckin.farmer.UnitGlobal.entity.UnitTransTransaccTe;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
@@ -77,6 +75,7 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
           
 		 vlor= client.TraeUnitporIPk(data);
 
+          vlorfiltrado=vlor;
                  
                  System.out.println("-------------/n");
                  System.out.println("El valor de data unit"+vlor.toString());
@@ -95,42 +94,69 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
           });
           
           System.out.println("valor encontrados de uuid"+uuidcomm.toString());
-         
+
+
+
+
           Boolean flag=false;
 
+
           System.out.println("el valor del size es "+vlor.size());
-          for (int i = 0; i <vlor.size() ; i++) {
-              System.out.println("contador vale "+i);
-              for (int j = 0; j < uuidcomm.size(); j++) {
-                  System.out.println("estamos en el elemento "+i+"    "+vlor.get(i).toString());
-                  
-                  if(vlor.get(i).getTransate().getTransacc_id().equals(uuidcomm.get(j))){
-                      System.out.println("comparando con el valor "+uuidcomm.get(j).toString());
-                      System.out.println("el valor encontrado vale"+vlor.get(i).toString());
+
+          Iterator<UnitTransTransaccTe> iteradorvlor=vlor.iterator();
+          Iterator<UUID> uuidIterator=uuidcomm.iterator();
+          UnitTransTransaccTe dataej=new UnitTransTransaccTe();
+
+          while(iteradorvlor.hasNext()){
+                dataej=iteradorvlor.next();
+                System.out.println("el valor del objeto"+dataej.toString());
+
+                while(uuidIterator.hasNext()){
+                    UUID uuidej=uuidIterator.next();
+                    System.out.println("el valor uuid"+uuidej);
+                        if(dataej.getTransate().getTransacc_id().equals(uuidej)){
+                            iteradorvlor.remove();
+                        }
+                }
+              uuidIterator=uuidcomm.iterator();
+
+          }
+
+
+/*
+          for (UnitTransTransaccTe reco: vlor) {
+
+              for (UUID m:uuidcomm) {
+                  System.out.println("estamos en el elemento "+    reco.toString());
+                  if(reco.getTransate().getTransacc_id().equals(m)){
+                      System.out.println("comparando con el valor "+m.toString());
+                      System.out.println("el valor encontrado vale"+reco.toString());
 
                       System.out.println("ENCONTRADO VALOR DISTINTO AGREGAMOS!!!!/n/n");
                       System.out.println("---------------------------------/n");
-
-                      flag=true;
-
-
-                                }
+                      flag=true;  }
                   
               }
               if(flag==true){
-                  vlor.remove(vlor.get(i));
+                  vlorfiltrado.remove(reco);
                   flag=false;
               }
 
+
+
+
+
+
+
               
               }
-              
+              */
               
 
           System.out.println("el valor filtrado vale"+vlor.toString());
 
                  System.out.println("el valor es "+vlor.toString());
-                 vlor.forEach(action->{
+          vlor.forEach(action->{
                  PandoraCheckFarmer data1=new PandoraCheckFarmer();
                  ResponsePersonalData pdata=new ResponsePersonalData();
                  pdata=this.SerachforId(action.getUnittrans().getIdUserfactory(),token);//aca tengo que cambiar el valor
