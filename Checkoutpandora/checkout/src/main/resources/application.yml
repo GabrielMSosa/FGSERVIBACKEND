@@ -1,0 +1,36 @@
+server:
+  port: 8071  #port number
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 90
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:8761/eureka/
+      #defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+
+spring:
+  application:
+    name: pandoraout-service #service name
+
+logging:
+  level:
+    com.example.howtodoinjava: DEBUG
+resilience4j:
+  timelimiter:
+    config:
+      default:
+        timeoutDuration: 4s
+
+  circuitbreaker:
+    instances:
+      pandoraout-service:
+        registerHealthIndicator: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED

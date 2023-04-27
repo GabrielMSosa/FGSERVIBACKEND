@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author gabriel
@@ -17,8 +19,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IPk implements Serializable  {
-    
+        @NotNull
         private Long iduserfactory;
+        @NotNull
         private Long iduserfarmer;
     
     

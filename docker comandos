@@ -20,7 +20,12 @@ borrar contenedor
 docker rm  modest_hellman
 
 
+@RequestMapping("/checkout")
+public class CheckoutController {
+@Autowired
+private PandoraCenterClientRest client;
 
+    @PostMapping("/checkoutpk")
 
 
 
@@ -29,6 +34,67 @@ docker rmi gateway,auth
 
 para todos los contenedores
 docker stop $(docker ps -q)
+
+
+###COMANDOS PARA EJECUTAR LOS DOCKER FILE QUE ESTAN OPTIMIZADOS
+Hace el mavn clean package -DskiptTest solo corriendo el comando de abajo
+EJECUTAMOS DE LA CARPETA RAIZ FGSERVICEBACKEDN
+
+MSCV-PANDORACENTER:
+------------------
+docker build  -t pandoracenter-service . -f ./pandoracenter/pandora/Dockerfile
+
+docker container run --name pandoracenter-service --network minet -d pandoracenter-service
+ 
+
+
+MSCV-AUTH:
+----------
+docker build -t auth-service . -f ./auth2/auth/Dockerfile
+docker container run --name auth-service --network minet -d auth-service
+
+
+MSVC-FARMER
+-----------
+docker build -t farmer-service . -f ./farmer/farmerservices/Dockerfile
+
+docker container run --name farmer-service --network minet -d farmer-service
+
+MSCV-CHECKOUT
+-------------
+docker build  -t pandoraout-service . -f ./Checkoutpandora/checkout/Dockerfile
+docker container run --name pandoraout-service --network minet -p8071:8071 -d pandoraout-service
+docker container run --name pandoraout-service --network minet  -d pandoraout-service
+
+
+MSVC-GATEWAY 
+------------
+por el momento con el comando de abajo hay que actualizar
+
+
+docker build  -t gateway-service . -f ./gateway2/gateway/Dockerfile
+
+docker container run --name gateway-service --network minet -p8080:8080 -d gateway-service
+
+docker container run --name gateway-service --network minet -p8080:8080 -d gateway-service
+
+MSCVC-PANDORA SERVICE(EX POSCHECKIN)
+------------------------------------
+docker build  -t pandora-service . -f ./pandoracheckin/farmer/Dockerfile
+
+docker container run --name pandora-service --network minet -d pandora-service
+
+
+
+
+///////////////////-----------------AUTH'0-----------------------///////////////////////////////
+
+TENTAND DOMINIAN: dev-z35kgcehhbn4fbck.us.auth0.com
+
+
+
+
+
 
 
 

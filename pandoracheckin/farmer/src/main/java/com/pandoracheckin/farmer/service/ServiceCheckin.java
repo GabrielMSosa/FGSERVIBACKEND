@@ -5,6 +5,9 @@
 package com.pandoracheckin.farmer.service;
 
 
+import com.pandoracheckin.farmer.ClienHttp.ClientAuth;
+import com.pandoracheckin.farmer.ClienHttp.ClientFarmer;
+import com.pandoracheckin.farmer.ClienHttp.PandoraCenterClient;
 import com.pandoracheckin.farmer.DTO.IPk;
 import com.pandoracheckin.farmer.DTO.PandoraCheckFarmer;
 import com.pandoracheckin.farmer.DTO.PosCheckinFar;
@@ -46,7 +49,12 @@ public class ServiceCheckin implements IService{
 final String UNIT_URI = "https://farmer-service/unit/retallpk";//retallpk/ es el nuevo endpoint que creamos 
 final String PDATA_URI = "https://auth-service/pdata/";
 final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/allposcheckinpk";
-
+    @Autowired
+    private ClientFarmer client;
+    @Autowired
+    private ClientAuth clientauth;
+    @Autowired
+    private PandoraCenterClient clientpand;
    @Autowired
 	RestTemplate restTemplate;
         
@@ -67,8 +75,8 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
             List<UnitTransTransaccTe> vlorfiltrado=new ArrayList<>();
        
           
-		 vlor= restTemplate.exchange(url,HttpMethod.POST,new HttpEntity<IPk>(data, createHttpHeaders(token)),
-				new ParameterizedTypeReference<List<UnitTransTransaccTe>>(){}).getBody();
+		 vlor= client.TraeUnitporIPk(data);
+
                  
                  System.out.println("-------------/n");
                  System.out.println("El valor de data unit"+vlor.toString());
@@ -101,10 +109,12 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
                       flag=true;
                       System.out.println("valor encontrado vale"+vlor.get(i).toString());
                       System.out.println("---------------------------------/n");
+
+
                                 }
                   
               }
-              if(flag==false){
+              if(flag==true){
               vlorfiltrado.add(vlor.get(i));
               flag=false;
               
@@ -112,17 +122,13 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
               
               
           }
-          
-          //vamos con  la logica recorremos primero el array valposcheckin y vemos los que no coinciden
-          
-          
-                 
-                 
+          System.out.println("el valor filtrado vale"+vlorfiltrado.toString());
+
                  System.out.println("el valor es "+vlor.toString());
                  vlorfiltrado.forEach(action->{
                  PandoraCheckFarmer data1=new PandoraCheckFarmer();
                  ResponsePersonalData pdata=new ResponsePersonalData();
-                 pdata=this.SerachforId(action.getUnittrans().getIdUserfactory(),token);
+                 pdata=this.SerachforId(action.getUnittrans().getIdUserfactory(),token);//aca tengo que cambiar el valor
                      System.out.println("el valor de pdata vale"+pdata.toString());
                  //--------------------
                 // data1.setId(id);
@@ -168,25 +174,14 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
           //  @TimeLimiter(name = "pandora-service", fallbackMethod = "getDefaultPandora")
            @io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker (name = "pandora-service", fallbackMethod = "getDefaultPdata")
     public ResponsePersonalData SerachforId(Long id,String token) {
-        String url=PDATA_URI+id.toString();
-             System.out.println("el valor de url vale"+url);
-    
-        
-        return restTemplate.exchange(url,HttpMethod.GET,new HttpEntity( createHttpHeaders(token)),
-				 ResponsePersonalData.class).getBody() ;
+    return clientauth.AllMenuFactory(token,id);
     
     }
 
     @Override
                @io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker (name = "pandora-service", fallbackMethod = "getDefaultPosCheckinFar")
     public List<PosCheckinFar> ReturnAllfromPoscheckin(IPk data, String token) {
-       String url=POSCHECKIN_URI;
-           List<PosCheckinFar> vlor=new ArrayList<>();
-       
-		 vlor= restTemplate.exchange(url,HttpMethod.POST,new HttpEntity<IPk>(data, createHttpHeaders(token)),
-				new ParameterizedTypeReference<List<PosCheckinFar>>(){}).getBody();
-                 System.out.println("el valor de poscheckin vale"+vlor.toString());
-        return vlor;
+     return clientpand.traerdata(data);
         
     }
     

@@ -4,17 +4,13 @@
  */
 package com.pandoracenter.pandora.service;
 
-import com.pandoracenter.pandora.entity.EStatus;
-import com.pandoracenter.pandora.entity.IPKstatus;
-import com.pandoracenter.pandora.entity.IPk;
-import com.pandoracenter.pandora.entity.PosCheckinFar;
+import com.pandoracenter.pandora.entity.*;
 import com.pandoracenter.pandora.repository.IRepoPoscheckiFar;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -43,6 +39,11 @@ public class ServiPoscheckinFarmer implements IServiPoscheckinFarmer {
     }
 
     @Override
+    public PosCheckinFar SaveGeneric(PosCheckinFar data) {
+        return repofar.save(data);
+    }
+
+    @Override
     public List<PosCheckinFar> ReturnAllPoscheckin() {
         return repofar.findAll();
     }
@@ -55,6 +56,11 @@ public class ServiPoscheckinFarmer implements IServiPoscheckinFarmer {
     @Override
     public List<PosCheckinFar> ReturnAllPoscheckinxPkandstatus(IPKstatus data) {
         return repofar.findByIdUserfactoryandStatus(data.getIduserfactory(), data.getIduserfarmer(),data.getStatus());
+    }
+
+    @Override
+    public List<PosCheckinFar> ReturnAllPoscheckinxPkandsubstatus(IPkSubstatus data) {
+        return repofar.findByIdUserfactoryandStatusSub(data.getIduserfactory(), data.getIduserfarmer(),data.getStatus(), data.getSubstatus());
     }
 
     @Override

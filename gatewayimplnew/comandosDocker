@@ -1,4 +1,3 @@
-
 //consutruimos la imagen del docker file
 
 
@@ -8,4 +7,4 @@
  run 
  docker run -p8087:8087 farmerservice:latest
  
- docker container run --network minet -p8080:8080 gateway:latest
+ docker container run  -d --network minet -p8080:8080 gateway:latest

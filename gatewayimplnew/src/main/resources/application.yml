@@ -53,6 +53,13 @@ spring:
             Path=/factory/**
           filters:
             - AuthFilter
+
+        - id: service-pandoraout
+          uri: lb://pandoraout-service
+          predicates:
+            Path=/pandoraout/**
+          filters:
+            - AuthFilter
         
         - id: service-auth
           uri: lb://auth-service
@@ -76,6 +83,8 @@ spring:
             Path=/pandoraposcheckin/**
           filters:
             - AuthFilter
+
+
             
             
   #eureka:   
