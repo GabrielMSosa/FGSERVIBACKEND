@@ -13,7 +13,7 @@ import com.pandoracenter.pandora.service.ServiPoscheckinFarmer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.hibernate.annotations.Parameter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,7 +39,7 @@ public class ControllerPoscheckin {
     
     
     @GetMapping("/allposcheckin")
-     ResponseEntity<List<PosCheckinFar>> ReturnAllfarmer(){
+    ResponseEntity<java.lang.Object> ReturnAllfarmer(){
     
           return ResponseEntity.status(HttpStatus.OK)
            .body(servi.ReturnAllPoscheckin());
@@ -50,7 +49,7 @@ public class ControllerPoscheckin {
      
      
      @PostMapping("/allposcheckinpk")
-     ResponseEntity<List<PosCheckinFar>> ReturnAllfarmerxPk(@RequestBody IPk data){
+     ResponseEntity<java.lang.Object> ReturnAllfarmerxPk(@RequestBody IPk data){
     
           return ResponseEntity.status(HttpStatus.OK)
            .body(servi.ReturnAllPoscheckinxPk(data));
