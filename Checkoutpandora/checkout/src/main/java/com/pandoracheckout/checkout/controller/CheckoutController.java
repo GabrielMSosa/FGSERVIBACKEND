@@ -2,10 +2,7 @@ package com.pandoracheckout.checkout.controller;
 
 import com.netflix.discovery.converters.Auto;
 import com.pandoracheckout.checkout.client.PandoraCenterClientRest;
-import com.pandoracheckout.checkout.entity.Checkout;
-import com.pandoracheckout.checkout.entity.IPKstatus;
-import com.pandoracheckout.checkout.entity.IPk;
-import com.pandoracheckout.checkout.entity.PosCheckinFar;
+import com.pandoracheckout.checkout.entity.*;
 import com.pandoracheckout.checkout.service.IServiceCheckout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,9 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 //checkout
@@ -56,6 +51,9 @@ private IServiceCheckout servi;
         if (result.hasErrors()){
             return ValidateData(result);
         }
+        ResponseEntity<Object> build = ValidStauts(data);
+        if (build != null) return build;
+
         return ResponseEntity.status(HttpStatus.OK)
                 .body(servi.savecheckout(data));
 
@@ -63,20 +61,39 @@ private IServiceCheckout servi;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private static ResponseEntity<Object> ValidStauts(Checkout data) {
+        if(!data.getStatus().equalsIgnoreCase(StatusOut.REJECT_FACTORY_TRUCK_OUT.toString()) || !data.getSubstatus().equalsIgnoreCase(StatusOut.REJECT_FACTORY_TRUCK_OUT.toString())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(!data.getStatus().equalsIgnoreCase(StatusOut.ACCEPT_CHECKOUT.toString()) || !data.getSubstatus().equalsIgnoreCase(StatusOut.ACCEPT_CHECKOUT.toString())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(!data.getStatus().equalsIgnoreCase(StatusOut.REJECT_FARMER_TRUCK_OUT.toString()) || !data.getSubstatus().equalsIgnoreCase(StatusOut.REJECT_FARMER_TRUCK_OUT.toString())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(!data.getStatus().equalsIgnoreCase(StatusOut.ACCEPT_FARMER.toString()) || !data.getSubstatus().equalsIgnoreCase(StatusOut.ACCEPT_FARMER.toString())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(!data.getStatus().equalsIgnoreCase(StatusOut.ACCEPT_FACTORY.toString()) || !data.getSubstatus().equalsIgnoreCase(StatusOut.ACCEPT_FACTORY.toString())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(!data.getStatus().equalsIgnoreCase(StatusOut.REJECT_FARMER.toString()) || !data.getSubstatus().equalsIgnoreCase(StatusOut.REJECT_FARMER.toString())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(!data.getStatus().equalsIgnoreCase(StatusOut.REJECT_FACTORY.toString()) || !data.getSubstatus().equalsIgnoreCase(StatusOut.REJECT_FACTORY.toString())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(!data.getStatus().equalsIgnoreCase(StatusOut.ACCEPT_FACTORY_TRUCK_OUT.toString()) || !data.getSubstatus().equalsIgnoreCase(StatusOut.ACCEPT_FACTORY_TRUCK_OUT.toString())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(!data.getStatus().equalsIgnoreCase(StatusOut.ACCEPT_FARMER_TRUCK_OUT.toString()) || !data.getSubstatus().equalsIgnoreCase(StatusOut.ACCEPT_FARMER_TRUCK_OUT.toString())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(!data.getStatus().equalsIgnoreCase(StatusOut.AUDIT.toString()) || !data.getSubstatus().equalsIgnoreCase(StatusOut.AUDIT.toString())){
+            return ResponseEntity.badRequest().build();
+        }
+        return null;
+    }
 
 
     private static ResponseEntity<Map<String, String>> ValidateData(BindingResult result) {
