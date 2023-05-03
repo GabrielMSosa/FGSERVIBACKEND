@@ -45,9 +45,12 @@ private IServiceCheckout servi;
                 .body(client.TraePoscheckinIpkdata(data));
             }
 
-    @PostMapping("/acceptCheckout")
+    @PostMapping("/acceptcheckout")
     ResponseEntity<?> AcceptCheckou(@Valid @RequestBody Checkout data, BindingResult result){
         //cambiamos el list por ? para enviar bad request
+
+        if (data.equa(EStatusOut.ACCEPT_CHECKOUT.toString()))
+
         if (result.hasErrors()){
             return ValidateData(result);
         }

@@ -31,7 +31,7 @@ public class ServiceCheckout implements IServiceCheckout{
 
         checkout.setPoscheckin(dataresp);
         checkout.setSubstatus(data.getSubstatus());
-        checkout.setTruck(data.getTruck());
+
         checkout.setStatus(data.getStatus());
 
         return repo.save(checkout);

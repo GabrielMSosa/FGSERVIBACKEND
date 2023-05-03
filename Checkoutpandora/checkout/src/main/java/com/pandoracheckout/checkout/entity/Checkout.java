@@ -28,9 +28,7 @@ public class Checkout {
     @JoinColumn(name = "poscheckin_id")
     private PosCheckinFar poscheckin;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "truck_id")
-    private Mytruck truck;
+
 
 
 
