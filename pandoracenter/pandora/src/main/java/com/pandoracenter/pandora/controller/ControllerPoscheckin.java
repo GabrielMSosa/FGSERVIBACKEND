@@ -379,7 +379,7 @@ public class ControllerPoscheckin {
 
     @PostMapping("/savebyfarmer/farmer")
       ResponseEntity<?> SaveByFarmer(@Valid @RequestBody PosCheckinFar data,  BindingResult result ){
-
+        System.out.println("el valor de data vale"+data.toString());
         if (result.hasErrors()){
             return ValidateData(result);
         }

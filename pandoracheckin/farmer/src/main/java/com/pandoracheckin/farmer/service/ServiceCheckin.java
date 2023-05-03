@@ -97,35 +97,40 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
           System.out.println("valor encontrados de uuid"+uuidcomm.toString());
          
           Boolean flag=false;
-                   
+
+          System.out.println("el valor del size es "+vlor.size());
           for (int i = 0; i <vlor.size() ; i++) {
-              
+              System.out.println("contador vale "+i);
               for (int j = 0; j < uuidcomm.size(); j++) {
                   System.out.println("estamos en el elemento "+i+"    "+vlor.get(i).toString());
                   
-                  if(vlor.get(i).getTransate().getTransacc_id().equals(uuidcomm.get(j))==false){
+                  if(vlor.get(i).getTransate().getTransacc_id().equals(uuidcomm.get(j))){
+                      System.out.println("comparando con el valor "+uuidcomm.get(j).toString());
+                      System.out.println("el valor encontrado vale"+vlor.get(i).toString());
+
                       System.out.println("ENCONTRADO VALOR DISTINTO AGREGAMOS!!!!/n/n");
                       System.out.println("---------------------------------/n");
+
                       flag=true;
-                      System.out.println("valor encontrado vale"+vlor.get(i).toString());
-                      System.out.println("---------------------------------/n");
 
 
                                 }
                   
               }
               if(flag==true){
-              vlorfiltrado.add(vlor.get(i));
-              flag=false;
+                  vlor.remove(vlor.get(i));
+                  flag=false;
+              }
+
               
               }
               
               
-          }
-          System.out.println("el valor filtrado vale"+vlorfiltrado.toString());
+
+          System.out.println("el valor filtrado vale"+vlor.toString());
 
                  System.out.println("el valor es "+vlor.toString());
-                 vlorfiltrado.forEach(action->{
+                 vlor.forEach(action->{
                  PandoraCheckFarmer data1=new PandoraCheckFarmer();
                  ResponsePersonalData pdata=new ResponsePersonalData();
                  pdata=this.SerachforId(action.getUnittrans().getIdUserfactory(),token);//aca tengo que cambiar el valor

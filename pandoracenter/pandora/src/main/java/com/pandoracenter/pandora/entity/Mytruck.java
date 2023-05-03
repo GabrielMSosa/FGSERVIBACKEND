@@ -32,7 +32,6 @@ import lombok.NoArgsConstructor;
 public class Mytruck {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

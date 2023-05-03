@@ -30,7 +30,6 @@ import org.hibernate.annotations.GenericGenerator;
 public class PandoraCheckFarmer {
       
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
        private Long id;
 

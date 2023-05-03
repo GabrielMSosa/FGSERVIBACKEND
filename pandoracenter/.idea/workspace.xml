@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="54cdab7f-0e33-4231-8dde-dd107978bf27" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../auth2/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../auth2/auth/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../auth2/auth/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../auth2/auth/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../auth2/auth/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker comandos" beforeDir="false" afterPath="$PROJECT_DIR$/../docker comandos" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../farmer/farmerservices/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../farmer/farmerservices/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../farmer/farmerservices/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../farmer/farmerservices/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandora/comandosDocker" beforeDir="false" afterPath="$PROJECT_DIR$/pandora/comandosDocker" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../farmer/farmerservices/src/main/java/com/farmer/farmerservices/UnitGlobal/Controller/ControllerUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../farmer/farmerservices/src/main/java/com/farmer/farmerservices/UnitGlobal/Controller/ControllerUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../farmer/farmerservices/src/main/java/com/farmer/farmerservices/UnitGlobal/services/IServiceUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../farmer/farmerservices/src/main/java/com/farmer/farmerservices/UnitGlobal/services/IServiceUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../farmer/farmerservices/src/main/java/com/farmer/farmerservices/UnitGlobal/services/ServiceUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../farmer/farmerservices/src/main/java/com/farmer/farmerservices/UnitGlobal/services/ServiceUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/controller/ControllerPoscheckin.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/controller/ControllerPoscheckin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/repository/IRepoPoscheckiFar.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/repository/IRepoPoscheckiFar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/service/IServiPoscheckinFarmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/service/IServiPoscheckinFarmer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/service/ServiPoscheckinFarmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/service/ServiPoscheckinFarmer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/entity/Mytruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/entity/Mytruck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/entity/PandoraCheckFarmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/pandora/src/main/java/com/pandoracenter/pandora/entity/PandoraCheckFarmer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../passgit" beforeDir="false" afterPath="$PROJECT_DIR$/../passgit" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +24,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -39,7 +41,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/gabriel/Escritorio/FGSERVIBACKEND/FGSERVIBACKEND"
+    "last_opened_file_path": "/home/gabriel/Escritorio/FGSERVIBACKEND/FGSERVIBACKEND/gateway2/gateway"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

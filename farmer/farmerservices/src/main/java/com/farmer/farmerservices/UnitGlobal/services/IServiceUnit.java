@@ -27,7 +27,7 @@ public String RejectUT(UnitTransaccion data);
 
 public String PendingUT(UnitTransaccion data);
 
-public String ScanUT(UnitTransaccion data);
+public UnitTransaccion ScanUT(UnitTransaccion data);
 
 public List<UnitTransTransaccTe> ReturnAll(Long id);
 public List<UnitTransTransaccTe> ReturnAllxfarm(Long id);

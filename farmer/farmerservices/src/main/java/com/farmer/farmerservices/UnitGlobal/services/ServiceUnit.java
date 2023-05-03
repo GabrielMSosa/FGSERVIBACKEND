@@ -208,13 +208,7 @@ public class ServiceUnit implements IServiceUnit{
              System.out.println("--------------------------------------------");
              System.out.println("valor recolectados vale"+datafind.toString());
              return datafind;
-         
-         
-         
-    
-        
-        
-        
+
         
     }
 
@@ -226,28 +220,18 @@ public class ServiceUnit implements IServiceUnit{
 
     
     @Override
-    public String ScanUT(UnitTransaccion data) {
+    public UnitTransaccion ScanUT(UnitTransaccion data) {
        UnitTransTransaccTe backupvalor= new UnitTransTransaccTe();
         TeNomDec tesearch=reptenom.findById(data.getIdTenomdec()).orElseThrow();
         System.out.println("el valor de te nominal buscado vale"+tesearch.toString());
-        
         Set<Transaccion_te> vtrans=tesearch.getTransaccion_te();
-        
-        
-        
-        vtrans.forEach(i->{
+           vtrans.forEach(i->{
             if (i.getTransacc_id().toString()==data.getTransacciUUID()) {
                 System.out.println("encontramo el elemento de transaccion y vale "+i.toString());
-                
-                
+
            } });
-       
-    
-        
-        //tengo que ver porque al cambiar un valor de lo que tengo en la base directamente me cambia el valor en la base de datos
-       
-     
-       Transaccion_te findval=new Transaccion_te();
+
+           Transaccion_te findval=new Transaccion_te();
         
      //----------------CON ESTE BLOQUE BUSCAMOS LA TRANSACCION CON EL TRANSACCION ID   
        vtrans.forEach(i->{
@@ -365,7 +349,7 @@ public class ServiceUnit implements IServiceUnit{
         }
     
          
-        return "ok"; 
+        return data;
             }
     
 

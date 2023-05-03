@@ -96,18 +96,14 @@ public class ControllerUnit {
       
       
       @PostMapping("/testfarm")
-      ResponseEntity<String> ValidaUnit(@RequestBody UnitTransaccion data){
+      ResponseEntity<UnitTransaccion> ValidaUnit(@RequestBody UnitTransaccion data){
       
           System.out.println("el valor en controller de unit vale"+data.toString());
         
         
           return ResponseEntity.status(HttpStatus.OK)
            .body( servi.ScanUT(data));
-      
-              
-         
-          
-      
+
       }
        
   
