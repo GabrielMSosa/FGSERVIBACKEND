@@ -2,6 +2,7 @@ package com.pandoracheckout.checkout.service;
 
 import com.pandoracheckout.checkout.client.PandoraCenterClientRest;
 import com.pandoracheckout.checkout.entity.Checkout;
+import com.pandoracheckout.checkout.entity.IPKSubStatus;
 import com.pandoracheckout.checkout.entity.PosCheckinFar;
 import com.pandoracheckout.checkout.repository.IRepoCheckout;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,14 @@ public class ServiceCheckout implements IServiceCheckout{
         checkout.setStatus(data.getStatus());
 
         return repo.save(checkout);
+
+    }
+
+
+    @Override
+    public Checkout Searchdata(IPKSubStatus data) {
+
+
 
     }
 }

@@ -58,6 +58,26 @@ private IServiceCheckout servi;
                 .body(servi.savecheckout(data));
 
     }
+    @PostMapping("/searchchkout")
+    ResponseEntity<?> SearchCheckou(@Valid @RequestBody Checkout data, BindingResult result){
+        if (result.hasErrors()){
+            return ValidateData(result);
+        }
+        ResponseEntity<Object> build = ValidStauts(data);
+        if (build != null) return build;
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.savecheckout(data));
+
+    }
+
+
+
+
+
+
+
+
 
 
 
