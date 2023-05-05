@@ -24,7 +24,7 @@ public class Checkout {
     @Column(name = "substatus",columnDefinition = "varchar(255) default 'NONE_PANDORA_SUB'")
     private String substatus;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "poscheckin_id")
     private PosCheckinFar poscheckin;
 

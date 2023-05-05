@@ -38,12 +38,12 @@ public class PosCheckinFar {
     private String status;
     
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "pandora_check_id")
     private PandoraCheckFarmer pandora_check;
     
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "truck_id")
     private Mytruck truck;
     

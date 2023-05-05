@@ -1,0 +1,66 @@
+SELECT EXISTS(select * from pandoradbout.checkout as a INNER JOIN pandoradbout.poscheckinfar as b  ON a.poscheckin_id = b.id INNER JOIN pandoradbout.pandoracheckfarmer as c ON b.pandora_check_id=c.id WHERE c.id_userfactory=6 AND c.id_userfarmer=2 AND a.status='ACCEPT_FARMER' AND a.substatus='ACCEPT_FARMER');
+
+SELECT EXISTS(select * from pandoradbout.checkout as a INNER JOIN pandoradbout.poscheckinfar as b  ON a.poscheckin_id = b.id INNER JOIN pandoradbout.pandoracheckfarmer as c ON b.pandora_check_id=c.id WHERE c.id_userfactory=2 AND c.id_userfarmer=6 AND a.status=ACCEPT_FARMER AND a.substatus=ACCEPT_FARMER);
+
+
+
+SELECT IF(  EXISTS(SELECT * FROM users  WHERE LOWER(username) ='name' ),'true','false' )
+
+
+@Param("iduserfactory")        Long iduserfactory,
+                                      @Param("iduserfarmer") Long iduserfarmer,
+                                      @Param("status") String status,
+                                      @Param("substatus") String substatus);
+
+
+
+   List<UnitTransTransaccTe> vlor=new ArrayList<>();
+   List<UnitTransTransaccTe> vlorfiltrado=new ArrayList<>();
+   List<UUID>  uuidcomm= new ArrayList<>();
+
+
+
+ System.out.println("el valor del size es "+vlor.size());
+
+          Iterator<UnitTransTransaccTe> iteradorvlor=vlor.iterator();
+          Iterator<UUID> uuidIterator=uuidcomm.iterator();
+          UnitTransTransaccTe dataej=new UnitTransTransaccTe();
+
+          while(iteradorvlor.hasNext()){
+                dataej=iteradorvlor.next();
+                System.out.println("el valor del objeto"+dataej.toString());
+
+                while(uuidIterator.hasNext()){
+                    UUID uuidej=uuidIterator.next();
+                    System.out.println("el valor uuid"+uuidej);
+                        if(dataej.getTransate().getTransacc_id().equals(uuidej)){
+                            iteradorvlor.remove();
+                        }
+                }
+              uuidIterator=uuidcomm.iterator();
+
+          }
+          
+          
+          select * from checkout;
++----+---------------+---------------+---------------+
+| id | status        | substatus     | poscheckin_id |
++----+---------------+---------------+---------------+
+| 25 | ACCEPT_FARMER | ACCEPT_FARMER |            24 |
++----+---------------+---------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from poscheckinfar;
++----+----------------+------------------+----------+
+| id | status         | pandora_check_id | truck_id |
++----+----------------+------------------+----------+
+| 24 | ACCEPT_CHECKIN |               22 |       23 |
++----+----------------+------------------+----------+
+1 row in set (0.00 sec)
+
+notas:
+agregar al uuid 
+     @Type(type = "uuid-char")
+     para arreglar las inconsistencias en la BD.
+     
+
