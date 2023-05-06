@@ -43,7 +43,7 @@ public class ControllerFarmWrite {
     
     
       @PostMapping("/write")
-      ResponseEntity<String> CargarFarmItemFull(@RequestBody TeNomDec data){
+      ResponseEntity<?> CargarFarmItemFull(@RequestBody TeNomDec data){
       //hay que arreglar este endpoint
       //porque tengo que entrar con el id para traer el datauser campo y poder cargarlo..
           System.out.println(data.toString());
@@ -125,13 +125,12 @@ public class ControllerFarmWrite {
       
       
       @GetMapping("/gettenominalbyiduser/{id}")
-                ResponseEntity<TeNomDec> GetDatoTenombyIdUser(@PathVariable Long id){
+                ResponseEntity<?> GetDatoTenombyIdUser(@PathVariable Long id){
                 
              return ResponseEntity.status(HttpStatus.OK).
                             body(servi.GetTenomByIdUser(id));
      
-                
-                
+
                 }
       
       

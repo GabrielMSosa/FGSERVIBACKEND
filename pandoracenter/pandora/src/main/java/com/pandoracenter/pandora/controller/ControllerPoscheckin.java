@@ -7,16 +7,15 @@ package com.pandoracenter.pandora.controller;
 import com.pandoracenter.pandora.entity.*;
 import com.pandoracenter.pandora.service.ServiPoscheckinFarmer;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-=======
+
 import java.util.*;
 
 import org.hibernate.annotations.Parameter;
->>>>>>> d43553a536bfa70554811e5ee2332864fcea3d8c
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,13 +53,11 @@ public class ControllerPoscheckin {
      
      
      @PostMapping("/allposcheckinpk")
-<<<<<<< HEAD
-     ResponseEntity<java.lang.Object> ReturnAllfarmerxPk(@RequestBody IPk data){
-    
-=======
+
+
      ResponseEntity<List<PosCheckinFar>> ReturnAllfarmerxPk(@RequestBody IPk data){
 
->>>>>>> d43553a536bfa70554811e5ee2332864fcea3d8c
+
           return ResponseEntity.status(HttpStatus.OK)
            .body(servi.ReturnAllPoscheckinxPk(data));
       
@@ -454,7 +451,25 @@ public class ControllerPoscheckin {
            .body(servi.FindMydataackfactory(id));
       
       }
-           
+      //estos dos metodos de abajo rertornan poscheckin segun la id y todos los stauts
+    @GetMapping("/returnidfact/{id}")
+    ResponseEntity<?> ReturnAllsbyfactory(@PathVariable Long id){
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.ReturnAllxidfactory(id));
+
+    }
+    @GetMapping("/returnidfarmer/{id}")
+    ResponseEntity<?> ReturnAllsbyfarmer(@PathVariable Long id){
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.ReturnAllxidfarmer(id));
+
+    }
+
+
+
+
 
     public PosCheckinFar ReturnStatusCorrect(PosCheckinFar data){
 
@@ -716,6 +731,299 @@ public class ControllerPoscheckin {
         });
         return ResponseEntity.badRequest().body(errores);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    //LOS DOS METODOS DE ABAJO ES PARA DEVOLVER POR ID SEGUN ROL Y TAMBIEN LOS STATUS.
+    @PostMapping("/return/allstatusbyfarmer")
+    ResponseEntity<?> ReturnAllstatusbyfarmer(@Valid @RequestBody IPkSubstatus data, BindingResult result){
+        if (result.hasErrors()){
+            return ValidateData(result);
+        }
+        List<PosCheckinFar> dtaout=new ArrayList<>();
+
+        if (data.getStatus().equals("accept_farmer")||data.getStatus().equals(EStatus.ACCEPT_FARMER.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER.toString());}
+
+        if (data.getStatus().equals("accept_factory")||data.getStatus().equals(EStatus.ACCEPT_FACTORY.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY.toString());}
+
+        if (data.getStatus().equals("reject_farmer")||data.getStatus().equals(EStatus.REJECT_FARMER.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER.toString());}
+
+        if (data.getStatus().equals("reject_factory")||data.getStatus().equals(EStatus.REJECT_FACTORY.toString())){
+
+            data.setStatus(EStatus.REJECT_FACTORY.toString());}
+
+        if (data.getStatus().equals("accept_factory_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("accept_factory_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_WATER_DG.toString());}
+
+        if (data.getStatus().equals("accept_farmer_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("accept_farmer_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_WATER_DG.toString());}
+
+        if (data.getStatus().equals("reject_farmer_truck_in")||data.getStatus().equals(EStatus.REJECT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("reject_farmer_water_dg")||data.getStatus().equals(EStatus.REJECT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_WATER_DG.toString());}
+
+        if (data.getStatus().equals("reject_truck_in_accepted_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString());}
+
+        if (data.getStatus().equals("reject_water_dg_accepted_truck_in")||data.getStatus().equals(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("reject_truck_in_and_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString());}
+
+        if (data.getStatus().equals("accept_checkin")||data.getStatus().equals(EStatus.ACCEPT_CHECKIN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_CHECKIN.toString());}
+        //-------------------------------------------------------
+        if (data.getSubstatus().equals("accept_farmer")||data.getStatus().equals(EStatus.ACCEPT_FARMER.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER.toString());}
+
+        if (data.getSubstatus().equals("accept_factory")||data.getStatus().equals(EStatus.ACCEPT_FACTORY.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY.toString());}
+
+        if (data.getSubstatus().equals("reject_farmer")||data.getStatus().equals(EStatus.REJECT_FARMER.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER.toString());}
+
+        if (data.getSubstatus().equals("reject_factory")||data.getStatus().equals(EStatus.REJECT_FACTORY.toString())){
+
+            data.setStatus(EStatus.REJECT_FACTORY.toString());}
+
+        if (data.getSubstatus().equals("accept_factory_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("accept_factory_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("accept_farmer_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("accept_farmer_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("reject_farmer_truck_in")||data.getStatus().equals(EStatus.REJECT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("reject_farmer_water_dg")||data.getStatus().equals(EStatus.REJECT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("reject_truck_in_accepted_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("reject_water_dg_accepted_truck_in")||data.getStatus().equals(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("reject_truck_in_and_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("accept_checkin")||data.getStatus().equals(EStatus.ACCEPT_CHECKIN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_CHECKIN.toString());}
+
+        else{
+            return ResponseEntity.badRequest().body(Collections.singletonMap("Error","Status fuera de rango"));
+
+        }
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.ReturnAllPoscheckinxPkandsubstatusfamer(data));
+    }
+
+
+    @PostMapping("/return/allstatusbyfactory")
+    ResponseEntity<?> ReturnAllstatusbyfactory(@Valid @RequestBody IPkSubstatus data, BindingResult result){
+        if (result.hasErrors()){
+            return ValidateData(result);
+        }
+        List<PosCheckinFar> dtaout=new ArrayList<>();
+
+        if (data.getStatus().equals("accept_farmer")||data.getStatus().equals(EStatus.ACCEPT_FARMER.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER.toString());}
+
+        if (data.getStatus().equals("accept_factory")||data.getStatus().equals(EStatus.ACCEPT_FACTORY.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY.toString());}
+
+        if (data.getStatus().equals("reject_farmer")||data.getStatus().equals(EStatus.REJECT_FARMER.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER.toString());}
+
+        if (data.getStatus().equals("reject_factory")||data.getStatus().equals(EStatus.REJECT_FACTORY.toString())){
+
+            data.setStatus(EStatus.REJECT_FACTORY.toString());}
+
+        if (data.getStatus().equals("accept_factory_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("accept_factory_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_WATER_DG.toString());}
+
+        if (data.getStatus().equals("accept_farmer_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("accept_farmer_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_WATER_DG.toString());}
+
+        if (data.getStatus().equals("reject_farmer_truck_in")||data.getStatus().equals(EStatus.REJECT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("reject_farmer_water_dg")||data.getStatus().equals(EStatus.REJECT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_WATER_DG.toString());}
+
+        if (data.getStatus().equals("reject_truck_in_accepted_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString());}
+
+        if (data.getStatus().equals("reject_water_dg_accepted_truck_in")||data.getStatus().equals(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString());}
+
+        if (data.getStatus().equals("reject_truck_in_and_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString());}
+
+        if (data.getStatus().equals("accept_checkin")||data.getStatus().equals(EStatus.ACCEPT_CHECKIN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_CHECKIN.toString());}
+        //-------------------------------------------------------
+        if (data.getSubstatus().equals("accept_farmer")||data.getStatus().equals(EStatus.ACCEPT_FARMER.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER.toString());}
+
+        if (data.getSubstatus().equals("accept_factory")||data.getStatus().equals(EStatus.ACCEPT_FACTORY.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY.toString());}
+
+        if (data.getSubstatus().equals("reject_farmer")||data.getStatus().equals(EStatus.REJECT_FARMER.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER.toString());}
+
+        if (data.getSubstatus().equals("reject_factory")||data.getStatus().equals(EStatus.REJECT_FACTORY.toString())){
+
+            data.setStatus(EStatus.REJECT_FACTORY.toString());}
+
+        if (data.getSubstatus().equals("accept_factory_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("accept_factory_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FACTORY_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FACTORY_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("accept_farmer_truck_in")||data.getStatus().equals(EStatus.ACCEPT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("accept_farmer_water_dg")||data.getStatus().equals(EStatus.ACCEPT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.ACCEPT_FARMER_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("reject_farmer_truck_in")||data.getStatus().equals(EStatus.REJECT_FARMER_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("reject_farmer_water_dg")||data.getStatus().equals(EStatus.REJECT_FARMER_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_FARMER_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("reject_truck_in_accepted_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_ACCEPTED_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("reject_water_dg_accepted_truck_in")||data.getStatus().equals(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString())){
+
+            data.setStatus(EStatus.REJECT_WATER_DG_ACCEPTED_TRUCK_IN.toString());}
+
+        if (data.getSubstatus().equals("reject_truck_in_and_water_dg")||data.getStatus().equals(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString())){
+
+            data.setStatus(EStatus.REJECT_TRUCK_IN_AND_WATER_DG.toString());}
+
+        if (data.getSubstatus().equals("accept_checkin")||data.getStatus().equals(EStatus.ACCEPT_CHECKIN.toString())){
+
+            data.setStatus(EStatus.ACCEPT_CHECKIN.toString());}
+
+        else{
+            return ResponseEntity.badRequest().body(Collections.singletonMap("Error","Status fuera de rango"));
+
+        }
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.ReturnAllPoscheckinxPkandsubstatusfactory(data));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

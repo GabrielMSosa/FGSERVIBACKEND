@@ -25,7 +25,7 @@ public interface IServiceFarm {
      public Set<TeNomDec> ReturnTruckforIdDataUser(Long id);
      public TeNomDec DeleteTruckforIdDataUser(Long idtnominal,Mytruck datadelet);//el id de tenominal
       
-    public String LoadCampo(TeNomDec data);
+    public Datauser_campo LoadCampo(TeNomDec data);
     
     public Datauser_campo GetByID(Long id);
 
@@ -40,6 +40,6 @@ public interface IServiceFarm {
     
     public TeNomDec AddTransaccionTe(Transaccion_te data, Long id);
 
-    public TeNomDec GetTenomByIdUser(Long id);
+    public Set<TeNomDec> GetTenomByIdUser(Long id);
     
 }

@@ -4,7 +4,6 @@
  */
 package com.authservice.auth.campo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -21,7 +19,6 @@ import lombok.NoArgsConstructor;
 //import com.example.demo.campo.entity.Transaccion_te;
 //import com.example.demo.campo.entity.Datauser_campo;
 import java.util.HashSet;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
@@ -91,10 +88,7 @@ public class TeNomDec {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "mytrucks_id")
     private Set<Mytruck> mytrucks=new HashSet<>();
-    
-    
-    
-    
-    
-    
+
+
+
 }

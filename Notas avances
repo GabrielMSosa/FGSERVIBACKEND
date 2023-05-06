@@ -1,6 +1,18 @@
 SELECT EXISTS(select * from pandoradbout.checkout as a INNER JOIN pandoradbout.poscheckinfar as b  ON a.poscheckin_id = b.id INNER JOIN pandoradbout.pandoracheckfarmer as c ON b.pandora_check_id=c.id WHERE c.id_userfactory=6 AND c.id_userfarmer=2 AND a.status='ACCEPT_FARMER' AND a.substatus='ACCEPT_FARMER');
 
-SELECT EXISTS(select * from pandoradbout.checkout as a INNER JOIN pandoradbout.poscheckinfar as b  ON a.poscheckin_id = b.id INNER JOIN pandoradbout.pandoracheckfarmer as c ON b.pandora_check_id=c.id WHERE c.id_userfactory=2 AND c.id_userfarmer=6 AND a.status=ACCEPT_FARMER AND a.substatus=ACCEPT_FARMER);
+SELECT EXISTS(select * from pandoradbout.checkout as a INNER JOIN pandoradbout.poscheckinfar as b  ON a.poscheckin_id = b.id INNER JOIN pandoradbout.pandoracheckfarmer as c ON b.pandora_check_id=c.id WHERE c.id_userfactory=2 AND c.id_userfarmer=6 AND a.status='ACCEPT_FARMER' AND a.substatus='ACCEPT_FARMER' AND c.transacc_id='c2961f8d-b763-4c03-8891-fd47baabcff2');
+	
+
+select * from transaccion_te\G;
+
+UPDATE transaccion_te
+SET transacc_id = 0x48BBFE40D7CE40B88610D85A7AC818A60000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+WHERE id = 1;
+
+
+
+
+
 
 
 
@@ -62,5 +74,24 @@ notas:
 agregar al uuid 
      @Type(type = "uuid-char")
      para arreglar las inconsistencias en la BD.
+     
+     select COUNT(a.id)> 0 from bootdb.tenomdec as a WHERE a.id_user=1;
+     
+
+ DROP TABLE IF EXISTS  basculaparametro,       
+datauser_campo,         
+datouser_factory,       
+hibernate_sequence,     
+matchiduserkvs,         
+mytruck,                
+ofertas,                
+tenomdec,               
+transaccion_te,         
+unit_trans_transacc_te, 
+unittransaccion,        
+user_roles,             
+users;
+     
+     
      
 

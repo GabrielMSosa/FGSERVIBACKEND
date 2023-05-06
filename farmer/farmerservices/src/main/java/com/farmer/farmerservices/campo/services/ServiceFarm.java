@@ -171,7 +171,7 @@ public class ServiceFarm implements IServiceFarm {
     
 //GetTeNomById(id)    
     @Override
-    public String LoadCampo(TeNomDec data) {
+    public Datauser_campo LoadCampo(TeNomDec data) {
         System.out.println("el valor de data en el servicio vale"+data.toString());
         ResponsePersonalData dataout=new ResponsePersonalData();
         EntityMatchIdUserKVS data1=repkvs.findByPkuser(data.getIdUser());//aca obtenemos el id de las entidades Datauser_campo o Datouser_factory del kvs 
@@ -232,9 +232,9 @@ public class ServiceFarm implements IServiceFarm {
        
        
         System.out.println("sout en servicio "+data2.toString());
-         repDataUs.save(data2);
+       return  repDataUs.save(data2);
     
-    return "OK";
+
     }
     
 
@@ -244,8 +244,25 @@ public class ServiceFarm implements IServiceFarm {
     }
 
     @Override
-    public TeNomDec GetTenomByIdUser(Long id) {
-        return repTenominal.findByIdUser(id).orElseThrow();
+    public Set<TeNomDec> GetTenomByIdUser(Long id) {
+        Set<TeNomDec> dtata=new HashSet<>();
+        if(repTenominal.existsTeNomByIdUser(id)>=1){
+            System.out.println("entramos al if de que encontramos tenom");
+            EntityMatchIdUserKVS data1=repkvs.findByPkuser(id);//aca obtenemos el id de las entidades Datauser_campo o Datouser_factory del kvs
+            Datauser_campo dtout=repDataUs.findById(data1.getPkdata()).orElseThrow();
+            return dtout.getTenominal();
+
+        }
+        else{
+            System.out.println("estamos en el else");
+            return dtata;
+
+
+
+        }
+
+
+
     }
 
     @Override

@@ -42,6 +42,25 @@ public interface IRepoPoscheckiFar extends JpaRepository<PosCheckinFar, Long> {
     @Query(value="select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE a.status=:status AND b.id_userfactory=:iduserfactory AND b.id_userfarmer=:iduserfarmer AND b.status=:substatus",nativeQuery = true)
     List<PosCheckinFar> findByIdUserfactoryandStatusSub(@Param("iduserfactory") Long iduserfactory,@Param("iduserfarmer") Long iduserfarmer,@Param("status") String status, @Param("substatus") String substatus);
 
+
+    @Query(value="select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE a.status=:status  AND b.id_userfarmer=:iduserfarmer AND b.status=:substatus",nativeQuery = true)
+    List<PosCheckinFar> findBystatusfarmer(@Param("iduserfarmer") Long iduserfarmer,@Param("status") String status, @Param("substatus") String substatus);
+
+    @Query(value="select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE a.status=:status  AND b.id_userfactory=:iduserfactory AND b.status=:substatus",nativeQuery = true)
+    List<PosCheckinFar> findBystatusfactory(@Param("iduserfactory") Long iduserfactory,@Param("status") String status, @Param("substatus") String substatus);
+
+
+    @Query(value="select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE  b.id_userfactory=:iduserfactory ;",nativeQuery = true)
+    List<PosCheckinFar> findByIdUserfactor(@Param("iduserfactory") Long iduserfactory );
+
+    @Query(value="select * from pandoradb.poscheckinfar as a INNER JOIN pandoradb.pandoracheckfarmer as b  ON a.pandora_check_id = b.id WHERE  b.id_userfarmer=:iduserfarmer ;",nativeQuery = true)
+    List<PosCheckinFar> findByIdUserfarmer(@Param("iduserfarmer") Long iduserfarmer );
+
+
+
+
+
+
 }
 
 

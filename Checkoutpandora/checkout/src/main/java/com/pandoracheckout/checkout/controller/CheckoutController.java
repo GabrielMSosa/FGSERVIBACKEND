@@ -123,6 +123,32 @@ private IServiceCheckout servi;
 
     }
 
+    @PostMapping("/searchbyfactory")
+    ResponseEntity<?> Searchbyid(@Valid @RequestBody IPKSubStatus data,BindingResult result){
+        if (result.hasErrors()){
+            return ValidateData(result);
+        }
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.SearchdataByID(data));//el id del POJO este caso Checkout
+    }
+
+    @PostMapping("/searchbyfarmer")
+    ResponseEntity<?> Searchbyidfarmer(@Valid @RequestBody IPKSubStatus data,BindingResult result){
+        if (result.hasErrors()){
+            return ValidateData(result);
+        }
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.SearchdataByIDFarmer(data));//el id del POJO este caso Checkout
+    }
+
+
+
+
+
+
+
+
+
     @PutMapping("/editcheckout/{id}")
     ResponseEntity<?> Editdata(@Valid @RequestBody Checkout data, BindingResult result,@PathVariable Long id){
         if (result.hasErrors()){
@@ -163,13 +189,10 @@ private IServiceCheckout servi;
 
         }
 
-
-
-
-
-
-
     }
+
+
+
 
     @PostMapping("/searchchkoutbin")
     ResponseEntity<?> ReturnOk(@Valid @RequestBody IPKSubStatus data, BindingResult result){

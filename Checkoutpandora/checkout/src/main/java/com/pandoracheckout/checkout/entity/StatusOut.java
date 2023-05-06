@@ -12,6 +12,6 @@ public enum StatusOut {
     REJECT_FARMER_TRUCK_OUT,
     ACCEPT_FARMER_TRUCK_OUT,
 
-    ACCEPT_CHECKOUT
+        ACCEPT_CHECKOUT
 
 }

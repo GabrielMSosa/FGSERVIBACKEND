@@ -14,4 +14,7 @@ public interface IServiceCheckout {
 public Checkout savecheckout(Checkout data);
 public List<Checkout> Searchdata(IPKSubStatus data);
 public  List<PosCheckinFar> ReturnAllnoUsed(IPKstatus data);
+
+    public List<Checkout> SearchdataByID(IPKSubStatus data);
+    public List<Checkout> SearchdataByIDFarmer(IPKSubStatus data);
 }

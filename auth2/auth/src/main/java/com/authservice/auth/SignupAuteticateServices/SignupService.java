@@ -66,7 +66,7 @@ public class SignupService implements ISignupServices {
         if(data1.getTipo().equals("Propietario de Campo")){
             System.out.println(" entramos en el if de campo");
             datcam=repocampo.findById(data1.getPkdata()).orElseThrow();
-        
+
             
             
             dataout.setId(datcam.getId());

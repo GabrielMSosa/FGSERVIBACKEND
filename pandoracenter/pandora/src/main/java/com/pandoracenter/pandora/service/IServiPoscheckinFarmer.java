@@ -38,4 +38,11 @@ public interface IServiPoscheckinFarmer {
     public PosCheckinFar SaveGeneric(PosCheckinFar data);
 
 
+    public List<PosCheckinFar> ReturnAllPoscheckinxPkandsubstatusfamer(IPkSubstatus data);
+    public List<PosCheckinFar> ReturnAllPoscheckinxPkandsubstatusfactory(IPkSubstatus data);
+
+    public List<PosCheckinFar> ReturnAllxidfarmer(Long idfarmer);
+    public List<PosCheckinFar> ReturnAllxidfactory(Long idfactory);
+
+
 }

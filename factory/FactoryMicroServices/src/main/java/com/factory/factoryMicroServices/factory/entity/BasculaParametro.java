@@ -18,8 +18,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
-    /**
+/**
  *
  * @author gabriel
  */
@@ -39,6 +40,7 @@ public class BasculaParametro {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "transaccion_truck",unique = true)
+    @Type(type = "uuid-char")
     private UUID transaccion_truck= UUID.randomUUID();
     
     

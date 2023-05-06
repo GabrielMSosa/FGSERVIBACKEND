@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 /**
  *
@@ -52,6 +53,7 @@ public class PandoraCheckFarmer {
        @GeneratedValue(generator="system-uuid")
        @GenericGenerator(name="system-uuid", strategy = "uuid")
        @Column(name = "transacc_id",unique = true)
+         @Type(type = "uuid-char")
        private UUID transacc_id= UUID.randomUUID();
        
        @NotNull

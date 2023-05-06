@@ -32,6 +32,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 /**
  *
  * @author gabriel
@@ -63,6 +65,7 @@ public class Transaccion_te {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "transacc_id",unique = true)
+    @Type(type = "uuid-char")
     private UUID transacc_id= UUID.randomUUID();
    
    

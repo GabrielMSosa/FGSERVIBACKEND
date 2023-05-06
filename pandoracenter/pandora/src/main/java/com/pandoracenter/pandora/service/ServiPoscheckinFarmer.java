@@ -193,4 +193,24 @@ public class ServiPoscheckinFarmer implements IServiPoscheckinFarmer {
         }
         return x;
     }
+
+    @Override
+    public List<PosCheckinFar> ReturnAllxidfarmer(Long idfarmer) {
+        return repofar.findByIdUserfarmer(idfarmer);
+    }
+
+    @Override
+    public List<PosCheckinFar> ReturnAllxidfactory(Long idfactory) {
+        return repofar.findByIdUserfactor(idfactory);
+    }
+
+    @Override
+    public List<PosCheckinFar> ReturnAllPoscheckinxPkandsubstatusfamer(IPkSubstatus data) {
+        return repofar.findBystatusfarmer(data.getIduserfarmer(), data.getStatus(), data.getSubstatus());
+    }
+
+    @Override
+    public List<PosCheckinFar> ReturnAllPoscheckinxPkandsubstatusfactory(IPkSubstatus data) {
+        return repofar.findBystatusfactory(data.getIduserfactory(), data.getStatus(), data.getSubstatus());
+    }
 }

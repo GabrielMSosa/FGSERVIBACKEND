@@ -47,6 +47,16 @@ public class ServiceCheckout implements IServiceCheckout{
     }
 
     @Override
+    public List<Checkout> SearchdataByID(IPKSubStatus data) {
+        return repo.findByIdFactory(data.getIduserfactory(), data.getStatus(), data.getSubstatus());
+    }
+
+    @Override
+    public List<Checkout> SearchdataByIDFarmer(IPKSubStatus data) {
+        return repo.findByIdFarmer(data.getIduserfarmer() ,data.getStatus(), data.getSubstatus());
+    }
+
+    @Override
     public Checkout EditCheckOut(Checkout data, Long id) {
         Checkout dtsearch= repo.findById(id).orElseThrow();
         dtsearch.setSubstatus(data.getSubstatus());
