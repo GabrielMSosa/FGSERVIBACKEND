@@ -45,6 +45,12 @@ MSCV-PANDORACENTER:
 docker build  -t pandoracenter-service . -f ./pandoracenter/pandora/Dockerfile
 
 docker container run --name pandoracenter-service --network minet -d pandoracenter-service
+
+//----------IMPORTANTE!!! APLICAR EN TODOS LOS MIMCROSERVICIOS
+agregar eureka-server 
+agregar my-db como host de db jdbc:mysql://my-db:3306
+
+
  
  update   @Type(type = "uuid-char")
 
@@ -97,6 +103,13 @@ docker container run --name pandora-service --network minet -d pandora-service
  
  update   @Type(type = "uuid-char")
 
+
+MSCVC-EUREKA-SERVER
+-------------------
+
+docker build  -t eureka-server . -f ./Eureka/EurekaServer/Dockerfile
+
+docker container run --name eureka-server --network minet -p8761:8761 -d eureka-server
 
 
 ///////////////////-----------------AUTH'0-----------------------///////////////////////////////

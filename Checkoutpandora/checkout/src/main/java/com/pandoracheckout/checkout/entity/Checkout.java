@@ -3,6 +3,8 @@ package com.pandoracheckout.checkout.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -24,9 +26,11 @@ public class Checkout {
     @Column(name = "substatus",columnDefinition = "varchar(255) default 'NONE_PANDORA_SUB'")
     private String substatus;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "poscheckin_id")
     private PosCheckinFar poscheckin;
+
+
 
 
 

@@ -11,6 +11,9 @@ import com.farmer.farmerservices.campo.entity.Transaccion_te;
 import com.farmer.farmerservices.campo.response.CampoResponse;
 import com.farmer.farmerservices.campo.services.IServiceFarm;
 import com.farmer.farmerservices.factory.entity.Datouser_factory;
+
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,6 +125,41 @@ public class ControllerFarmWrite {
     
       
       }
+    @PostMapping("/addtransaccbyidtenom/{id}")
+    ResponseEntity<?> AddTeTransacc(@RequestBody Transaccion_te data,
+                                           @PathVariable Long id   ){
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.AddTransaccionTe(data,id));
+
+    }
+    @DeleteMapping("deleteTransacc/{id}")
+    ResponseEntity<?> DeleteData(
+                                    @PathVariable Long id   ){
+
+          try {
+              servi.DeleteTransacc(id);
+
+          }
+          catch (Exception e){
+
+
+              return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+                      body(Collections.singletonMap("error",e.toString()));
+
+          }
+
+
+
+
+        return ResponseEntity.status(HttpStatus.OK).
+                body(Collections.singletonMap("Status","elementoborrado"));
+
+
+
+
+    }
+
       
       
       @GetMapping("/gettenominalbyiduser/{id}")

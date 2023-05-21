@@ -40,28 +40,46 @@ import javax.validation.Valid;
 public class ControllerPoscheckin {
     @Autowired
     private ServiPoscheckinFarmer servi;
-    
-    
+
+
     @GetMapping("/allposcheckin")
     ResponseEntity<java.lang.Object> ReturnAllfarmer(){
-    
+
           return ResponseEntity.status(HttpStatus.OK)
            .body(servi.ReturnAllPoscheckin());
-      
+
      }
-     
-     
-     
+
+
+     /*
+     *
+     *
+     *
+     *
+     *   @PostMapping("/pandoraposcheckin/allposcheckinpk")
+    public List<PosCheckinFar> traerdata( @RequestBody IPk data);
+     *
+     *
+     *
+     *
+     *
+     *  */
      @PostMapping("/allposcheckinpk")
 
 
-     ResponseEntity<List<PosCheckinFar>> ReturnAllfarmerxPk(@RequestBody IPk data){
+     ResponseEntity<?> ReturnAllfarmerxPk(@RequestBody IPk data){
 
 
           return ResponseEntity.status(HttpStatus.OK)
            .body(servi.ReturnAllPoscheckinxPk(data));
-      
+
      }
+
+
+
+
+
+
 
 
     @PostMapping("/savebyfarmer/factory")
@@ -382,9 +400,9 @@ public class ControllerPoscheckin {
         }
         PosCheckinFar returnvalue= new PosCheckinFar();
           System.out.println("el valor ingresado es "+ data.toString());
-          
+
           String tipostatus=data.getStatus();
-          
+
           if (tipostatus.equals("accept_farmer")||tipostatus.equals("accept_factory")||tipostatus.equals("reject_factory")||tipostatus.equals("reject_farmer")) {
               System.out.println("entramos al camino correcto");
               if (tipostatus.equals("accept_farmer")) {
@@ -403,33 +421,33 @@ public class ControllerPoscheckin {
           else{
               System.out.println("entramos al conflict");
           return ResponseEntity.status(HttpStatus.CONFLICT).body(data);
-          
-          
+
+
           }
-          
-          
+
+
           /*
           ACCEPT_FARMER,
   ACCEPT_FACTORY,
   REJECT_FARMER,
   REJECT_FACTORY,*/
-          
-          
+
+
           //ResponseEntity<UnitTransTransaccTe[]> responseEntity =  restTemplate.getForEntity(url,
 	//			UnitTransTransaccTe[].class);
         returnvalue=servi.SavebyFarmer(data);
           if (returnvalue==null) {
                return ResponseEntity.status(HttpStatus.CONFLICT).body(data);
-              
+
           }
           else{
-        
-        
+
+
           return ResponseEntity.status(HttpStatus.OK)
            .body(returnvalue);
-      
+
           }
-      
+
       }
     @GetMapping("/findallbyfarmer/{id}")
     ResponseEntity<List<PosCheckinFar>> FindAllByFarmer( @PathVariable Long id ){
@@ -438,18 +456,18 @@ public class ControllerPoscheckin {
     }
       @GetMapping("/findackfarmer/{id}")
       ResponseEntity<List<PosCheckinFar>> FindByFarmer( @PathVariable Long id ){
-                 
+
        return ResponseEntity.status(HttpStatus.OK)
            .body(servi.FindMydataackfarmer(id));
-      
+
       }
       //ese endpoint usamos para buscar los pendientes.
         @GetMapping("/findackfactory/{id}")
       ResponseEntity<List<PosCheckinFar>> FindByFactory( @PathVariable Long id ){
-                 
+
        return ResponseEntity.status(HttpStatus.OK)
            .body(servi.FindMydataackfactory(id));
-      
+
       }
       //estos dos metodos de abajo rertornan poscheckin segun la id y todos los stauts
     @GetMapping("/returnidfact/{id}")
@@ -873,6 +891,27 @@ public class ControllerPoscheckin {
     }
 
 
+
+
+    //ENDPOINT PARA REPORTE
+
+    @GetMapping("/factory/{id}")
+    ResponseEntity<?> SearchByIdFactoryignoreStatus(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.ReturnAllxidfactory(id));
+    }
+    @GetMapping("/farmer/{id}")
+    ResponseEntity<?> SearchByIdFarmerignoreStatus(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.ReturnAllxidfarmer(id));
+    }
+
+
+//************FIN ENDPOINT REPORT***************************************
+
+
+
+
     @PostMapping("/return/allstatusbyfactory")
     ResponseEntity<?> ReturnAllstatusbyfactory(@Valid @RequestBody IPkSubstatus data, BindingResult result){
         if (result.hasErrors()){
@@ -1000,30 +1039,6 @@ public class ControllerPoscheckin {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(servi.ReturnAllPoscheckinxPkandsubstatusfactory(data));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

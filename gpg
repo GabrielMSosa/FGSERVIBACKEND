@@ -1,0 +1,34 @@
+gpg (GnuPG) 2.2.27; Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Nota: Usa "gpg --full-generate-key" para el diálogo completo de generación de clave.
+
+GnuPG debe construir un ID de usuario para identificar su clave.
+
+Nombre y apellidos: Gabriel Matias Sosa
+Dirección de correo electrónico: sosagabriel79@gmail.com
+Ha seleccionado este ID de usuario:
+    "Gabriel Matias Sosa <sosagabriel79@gmail.com>"
+
+¿Cambia (N)ombre, (D)irección o (V)ale/(S)alir? v
+Es necesario generar muchos bytes aleatorios. Es una buena idea realizar
+alguna otra tarea (trabajar en otra ventana/consola, mover el ratón, usar
+la red y los discos) durante la generación de números primos. Esto da al
+generador de números aleatorios mayor oportunidad de recoger suficiente
+entropía.
+Es necesario generar muchos bytes aleatorios. Es una buena idea realizar
+alguna otra tarea (trabajar en otra ventana/consola, mover el ratón, usar
+la red y los discos) durante la generación de números primos. Esto da al
+generador de números aleatorios mayor oportunidad de recoger suficiente
+entropía.
+gpg: clave DB65F0615CC835B0 marcada como de confianza absoluta
+gpg: creado el directorio '/home/gabriel/.gnupg/openpgp-revocs.d'
+gpg: certificado de revocación guardado como '/home/gabriel/.gnupg/openpgp-revocs.d/6E6B22B14734A8ABD7FCA0E5DB65F0615CC835B0.rev'
+claves pública y secreta creadas y firmadas.
+
+pub   rsa3072 2023-05-16 [SC] [caduca: 2025-05-15]
+      6E6B22B14734A8ABD7FCA0E5DB65F0615CC835B0
+uid                      Gabriel Matias Sosa <sosagabriel79@gmail.com>
+sub   rsa3072 2023-05-16 [E] [caduca: 2025-05-15]
+

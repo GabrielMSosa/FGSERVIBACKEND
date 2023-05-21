@@ -143,13 +143,24 @@ public class ServiceFarm implements IServiceFarm {
     
     @Override
     public TeNomDec AddTransaccionTe(Transaccion_te data, Long id) {
-        
+
+        System.out.println(data.toString());
+        Transaccion_te valor= new Transaccion_te();
+        valor.setIdUser(data.getIdUser());
+        valor.setData_delivery_last(data.getData_delivery_last());
+
+        valor.setData_delivery_first(data.getData_delivery_first());
+        valor.setCant_te_certi_nominal_now(data.getCant_te_certi_nominal_now());
+        valor.setCant_te_no_certi_nominal_now(data.getCant_te_no_certi_nominal_now());
+        valor.setMytrucks(data.getMytrucks());
+        System.out.println(valor.toString());
+
         TeNomDec dataout=repTenominal.findById(id).orElseThrow();
         
         Set<Transaccion_te> x=dataout.getTransaccion_te();
         
         
-        x.add(data);
+        x.add(valor);
         
         dataout.setTransaccion_te(x);
         
@@ -166,10 +177,13 @@ public class ServiceFarm implements IServiceFarm {
         
         
     }
-    
-    
-    
-//GetTeNomById(id)    
+
+    @Override
+    public void DeleteTransacc(Long id) {
+        repotransacc.deleteById(id);
+    }
+
+    //GetTeNomById(id)
     @Override
     public Datauser_campo LoadCampo(TeNomDec data) {
         System.out.println("el valor de data en el servicio vale"+data.toString());

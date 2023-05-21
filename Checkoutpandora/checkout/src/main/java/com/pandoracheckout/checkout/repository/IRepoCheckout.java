@@ -29,5 +29,12 @@ public interface IRepoCheckout extends JpaRepository<Checkout,Long> {
     @Query(value="select * from pandoradbout.checkout as a INNER JOIN pandoradbout.poscheckinfar as b  ON a.poscheckin_id = b.id INNER JOIN pandoradbout.pandoracheckfarmer as c ON b.pandora_check_id=c.id WHERE c.id_userfarmer=:iduserfarmer  AND a.status=:status AND a.substatus=:substatusa ;",nativeQuery = true)
     List<Checkout> findByIdFarmer( @Param("iduserfarmer") Long iduserfarmer, @Param("status") String status,@Param("substatusa") String substatusa);
 
+    @Query(value="select * from pandoradbout.checkout as a INNER JOIN pandoradbout.poscheckinfar as b  ON a.poscheckin_id = b.id INNER JOIN pandoradbout.pandoracheckfarmer as c ON b.pandora_check_id=c.id WHERE c.transacc_id=:uuidata;",nativeQuery = true)
+    Checkout findByUUID( @Param("uuidata") String uuidata);
+    @Query(value="select * from pandoradbout.checkout as a INNER JOIN pandoradbout.poscheckinfar as b  ON a.poscheckin_id = b.id INNER JOIN pandoradbout.pandoracheckfarmer as c ON b.pandora_check_id=c.id WHERE c.id_userfarmer=:id ;",nativeQuery = true)
+    List<Checkout> findByIdFarmerNoStatus(@Param("id") Long id);
+    @Query(value="select * from pandoradbout.checkout as a INNER JOIN pandoradbout.poscheckinfar as b  ON a.poscheckin_id = b.id INNER JOIN pandoradbout.pandoracheckfarmer as c ON b.pandora_check_id=c.id WHERE c.id_userfactory=:id ;",nativeQuery = true)
+    List<Checkout> findByIdFactoryNoStatus(@Param("id") Long id);
+
 
 }

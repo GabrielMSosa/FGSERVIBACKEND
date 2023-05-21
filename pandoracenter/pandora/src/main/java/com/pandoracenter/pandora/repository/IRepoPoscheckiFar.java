@@ -60,7 +60,6 @@ public interface IRepoPoscheckiFar extends JpaRepository<PosCheckinFar, Long> {
 
 
 
-
 }
 
 

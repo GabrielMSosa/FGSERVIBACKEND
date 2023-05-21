@@ -17,4 +17,9 @@ public  List<PosCheckinFar> ReturnAllnoUsed(IPKstatus data);
 
     public List<Checkout> SearchdataByID(IPKSubStatus data);
     public List<Checkout> SearchdataByIDFarmer(IPKSubStatus data);
+    public List<Checkout>  Searchbyfarmer(Long data);
+    public List<Checkout>  Searchbyfactory(Long data);
+
+
+
 }

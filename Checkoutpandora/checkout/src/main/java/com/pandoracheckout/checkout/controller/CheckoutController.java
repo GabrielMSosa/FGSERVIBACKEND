@@ -27,6 +27,11 @@ public class CheckoutController {
 private PandoraCenterClientRest client;
 @Autowired
 private IServiceCheckout servi;
+
+
+
+
+
     @PostMapping("/checkoutpk")
     ResponseEntity<?> ReturnAllfarmeraxPk(@Valid @RequestBody IPk data, BindingResult result){
         //cambiamos el list por ? para enviar bad request
@@ -97,7 +102,7 @@ private IServiceCheckout servi;
                         ||data.getSubstatus().equalsIgnoreCase(StatusOut.AUDIT.toString()))){
 
             System.out.println("pasamos el ok."+data.toString());
-            return ResponseEntity.status(HttpStatus.OK)
+            return ResponseEntity.status(HttpStatus.CREATED)
                     .body(servi.savecheckout(data));
 
         }
@@ -140,6 +145,38 @@ private IServiceCheckout servi;
         return ResponseEntity.status(HttpStatus.OK)
                 .body(servi.SearchdataByIDFarmer(data));//el id del POJO este caso Checkout
     }
+
+
+    //ENDPOINT PARA REPORTE
+
+    @GetMapping("/factory/{id}")
+    ResponseEntity<?> SearchByIdFactoryignoreStatus(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.Searchbyfactory(id));
+                        }
+    @GetMapping("/farmer/{id}")
+    ResponseEntity<?> SearchByIdFarmerignoreStatus(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(servi.Searchbyfarmer(id));
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

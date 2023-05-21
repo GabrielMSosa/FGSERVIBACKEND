@@ -1,0 +1,137 @@
+MINIKUBE STATUS
+MINIKUBE START
+
+creamos deployments
+kubectl create deployment mysql8 --image=mysql:8 --port=3306
+
+no nos aparece habilitado porque necesita variables de ambientes
+kubectl get deployments
+
+estados de los pods 
+
+
+kubectl get pods
+ esta con errore mysql por var ambientes
+ 
+ 
+ ver por donde viene el error es con 
+kubectl logs mysql8-5c8c4b6bd8-fqvjs 
+
+
+kubectl describe pods mysql8-5c8c4b6bd8-fqvjs
+
+---------------MYSQL CON VARIABLE DE AMBIENTE--------------------------
+
+borrar deployments:
+kubectl delete deployment mysql8
+
+consultar deploymens:
+kubectl get deployments
+o 
+kubectl get deploy
+
+comando para crear el archivo de configuracion que hubiese implementado normalmente con --dry-run=client
+
+kubectl create deployment my-db --image=mysql:8 --port=3306 --dry-run=client -o yaml > deployment-mysql.yaml
+
+CONTRABARRA ALTGR+SIGNO DE REPGUNTA ALADO DEL CERO \\
+
+Luego de editar las variables de ambientes usamos el comando para levantar el deployment y en consecuencia su pods:
+ kubectl apply -f deployment-mysql.yaml
+ 
+ 
+ -----------creando el service
+ NOS PERMITE CONECTARNOS A LOS PODS ES DECIR MANEJA EL TRAFICO ; MANEJA ES UNA ABSTRACCION QUE REUNE UNAS POLITICA PARA PODER ACCDEDER AL PODS
+ EN EL SERVICE SE PUEDE ACCEDER AL PODS CON UN SELECTOR 
+ 
+ 
+ vamos a exponer los pods del deployment(crear el servicio):
+ el tipo es ClusterIp que nos permite la comunicacion unicamente entre los WorkerNode
+ NodePort es para comunicacion externa seria la ip externa del worker node
+ LoadBalancer EKS 
+ 
+ 
+ kubectl expose deployment my-db --port=3306 --type=ClusterIP 
+ 
+ para ver los servicios:
+  kubectl get services
+  kubectl get svc
+  
+ 
+ 
+ para describir el servicio:
+ 
+ kubectl describe service my-db
+
+ kubectl get all
+ 
+ -------------------------------------------
+ creando el deployment para farmer service
+ 
+ kubectl create deployment farmer-service --image=gabrielmsosa/msvc-farmer:latest --port=8087
+
+ahora vamos a exponer el deployment con el servicio con el comando expose:
+kubectl expose deployment farmer-service --port=8087 --type=LoadBalancer
+kubectl get services
+NAME             TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+farmer-service   LoadBalancer   10.97.19.90    <pending>     8087:32019/TCP   12s
+kubernetes       ClusterIP      10.96.0.1      <none>        443/TCP          22h
+
+figura pending el external ip si usamos eks de aws crea solo pero ahora debemos usar una instruccion de minikube
+
+para tener el ip usamos comando de MINIKUBE
+usamos el nombre del servicio
+
+ minikube service farmer-service --url
+ 
+ minikube service farmer-service --url
+http://127.0.0.1:42759
+pruebo en postman http://127.0.0.1:42759/farmer/gettenominalall y tira 200 
+
+
+///////////////////////////////////////////
+DEPLOY EUREKA SEVER eureka-server gabrielmsosa/msvc-eureka
+
+
+kubectl create deployment eureka-server --image=gabrielmsosa/msvc-eureka:latest --port=8761
+
+creamos el servicio 
+
+kubectl expose deployment eureka-server --port=8761 --type=LoadBalancer
+
+retornA:
+.service/eureka-server exposed
+
+ kubectl get services
+NAME             TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+eureka-server    LoadBalancer   10.96.55.41    <pending>     8761:32163/TCP   32s
+farmer-service   LoadBalancer   10.97.19.90    <pending>     8087:32019/TCP   37m
+kubernetes       ClusterIP      10.96.0.1      <none>        443/TCP          23h
+my-db            ClusterIP      10.96.158.90   <none>        3306/TCP         82m
+
+
+el cloud manager crear en el cloud api 
+
+ejecutamos el comando de abajo y tiene LB:
+minikube service eureka-server --url
+http://127.0.0.1:44657
+
+para borrar servicios:
+kubectl delete service <service-name>
+
+
+
+//----------------FORMA IMPERATIVA
+
+kubectl get service my-db -o yaml > my-db.yaml 
+
+ buena practica crear los yaml de los deployments  para los microservicios
+kubectl create deployment my-db --image=mysql:8 --port=3306 --dry-run=client -o yaml > deployment-mysql.yaml
+
+ 
+ 
+ 
+
+ 
+
+

@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9da2bf30-e3c2-49cf-9c7f-74e718a9c71b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../auth2/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../auth2/auth/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../auth2/auth/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../auth2/auth/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../auth2/auth/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/controller/CheckoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/controller/CheckoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/entity/Checkout.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/entity/Checkout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/entity/PosCheckinFar.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/entity/PosCheckinFar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/repository/IRepoCheckout.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/repository/IRepoCheckout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/service/IServiceCheckout.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/service/IServiceCheckout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/service/ServiceCheckout.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkoutpandora/checkout/src/main/java/com/pandoracheckout/checkout/service/ServiceCheckout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Notas avances" beforeDir="false" afterPath="$PROJECT_DIR$/../Notas avances" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/farmerservices/src/main/java/com/farmer/farmerservices/campo/services/IServiceFarm.java" beforeDir="false" afterPath="$PROJECT_DIR$/farmerservices/src/main/java/com/farmer/farmerservices/campo/services/IServiceFarm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/farmerservices/src/main/java/com/farmer/farmerservices/campo/services/ServiceFarm.java" beforeDir="false" afterPath="$PROJECT_DIR$/farmerservices/src/main/java/com/farmer/farmerservices/campo/services/ServiceFarm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/farmerservices/src/main/java/com/farmer/farmerservices/factory/controller/ControllerFarmWrite.java" beforeDir="false" afterPath="$PROJECT_DIR$/farmerservices/src/main/java/com/farmer/farmerservices/factory/controller/ControllerFarmWrite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pandoracenter/pandora/src/main/java/com/pandoracenter/pandora/controller/ControllerPoscheckin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pandoracenter/pandora/src/main/java/com/pandoracenter/pandora/controller/ControllerPoscheckin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pandoracenter/pandora/src/main/java/com/pandoracenter/pandora/repository/IRepoPoscheckiFar.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pandoracenter/pandora/src/main/java/com/pandoracenter/pandora/repository/IRepoPoscheckiFar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pandoracenter/pandora/src/main/java/com/pandoracenter/pandora/service/ServiPoscheckinFarmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pandoracenter/pandora/src/main/java/com/pandoracenter/pandora/service/ServiPoscheckinFarmer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pandoracheckin/farmer/src/main/java/com/pandoracheckin/farmer/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pandoracheckin/farmer/src/main/java/com/pandoracheckin/farmer/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pandoracheckin/farmer/src/main/java/com/pandoracheckin/farmer/service/ServiceCheckin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pandoracheckin/farmer/src/main/java/com/pandoracheckin/farmer/service/ServiceCheckin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +32,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -30,7 +49,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/gabriel/Escritorio/FGSERVIBACKEND/FGSERVIBACKEND/auth2/auth"
+    "last_opened_file_path": "/home/gabriel/Escritorio/FGSERVIBACKEND/FGSERVIBACKEND/Eureka/EurekaServer"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

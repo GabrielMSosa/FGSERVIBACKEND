@@ -6,6 +6,8 @@ package com.pandoracenter.pandora.service;
 
 import com.pandoracenter.pandora.entity.*;
 import com.pandoracenter.pandora.repository.IRepoPoscheckiFar;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +52,25 @@ public class ServiPoscheckinFarmer implements IServiPoscheckinFarmer {
 
     @Override
     public List<PosCheckinFar> ReturnAllPoscheckinxPk(IPk data) {
+
         return repofar.findAllxIPk(data.getIduserfactory(),data.getIduserfarmer());
     }
 
     @Override
     public List<PosCheckinFar> ReturnAllPoscheckinxPkandstatus(IPKstatus data) {
-        return repofar.findByIdUserfactoryandStatus(data.getIduserfactory(), data.getIduserfarmer(),data.getStatus());
+        List<PosCheckinFar> datase=new ArrayList<>();
+        datase= repofar.findByIdUserfactoryandStatus(data.getIduserfactory(), data.getIduserfarmer(),data.getStatus());
+        if (datase.size()==0){
+            List<PosCheckinFar> datdumy=new ArrayList<>();
+            return datdumy;
+
+
+        }
+        else{
+            return datase;
+
+
+        }
     }
 
     @Override
@@ -198,6 +213,15 @@ public class ServiPoscheckinFarmer implements IServiPoscheckinFarmer {
     public List<PosCheckinFar> ReturnAllxidfarmer(Long idfarmer) {
         return repofar.findByIdUserfarmer(idfarmer);
     }
+
+
+
+
+
+
+
+
+
 
     @Override
     public List<PosCheckinFar> ReturnAllxidfactory(Long idfactory) {

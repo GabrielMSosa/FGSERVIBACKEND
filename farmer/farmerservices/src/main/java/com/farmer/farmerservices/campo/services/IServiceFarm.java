@@ -41,5 +41,7 @@ public interface IServiceFarm {
     public TeNomDec AddTransaccionTe(Transaccion_te data, Long id);
 
     public Set<TeNomDec> GetTenomByIdUser(Long id);
+
+    public void DeleteTransacc(Long id);
     
 }

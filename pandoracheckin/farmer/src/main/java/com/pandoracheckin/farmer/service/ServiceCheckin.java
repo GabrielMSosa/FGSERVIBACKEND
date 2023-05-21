@@ -63,7 +63,7 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
       //@TimeLimiter(name = "pandora-service", fallbackMethod = "getDefaultPandora")
         @io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker (name = "pandora-service", fallbackMethod = "getDefaultPandora")
     public List<PandoraCheckFarmer> ReturnAll(IPk data,String token) {
-        
+            Boolean firsttime=false;
            List<PandoraCheckFarmer> tosend=new ArrayList<>();
         String url=UNIT_URI;
              System.out.println("el valor de url vale"+url);
@@ -85,16 +85,27 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
           //buscamos el valor 
           List<PosCheckinFar> valfromposcheck=this.ReturnAllfromPoscheckin(data, token);
                    System.out.println("el valor de postchein encontrado es "+valfromposcheck.toString());
-                   
-          List<UUID> uuidcomm= new ArrayList<>();
-           
-          valfromposcheck.forEach(value->{
-              uuidcomm.add(value.getPandora_check().getTransacc_id());
-          
-          });
-          
-          System.out.println("valor encontrados de uuid"+uuidcomm.toString());
+          if (valfromposcheck.size()==0){
+              firsttime=true;
+              System.out.println("pprimera vez no encontramos nada"+valfromposcheck.toString());
+          }
+          else{
+              firsttime=false;
 
+          }
+
+
+
+
+          List<UUID> uuidcomm= new ArrayList<>();
+           if (!firsttime) {
+               valfromposcheck.forEach(value -> {
+                   uuidcomm.add(value.getPandora_check().getTransacc_id());
+
+               });
+
+               System.out.println("valor encontrados de uuid" + uuidcomm.toString());
+           }
 
 
 
@@ -106,7 +117,7 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
           Iterator<UnitTransTransaccTe> iteradorvlor=vlor.iterator();
           Iterator<UUID> uuidIterator=uuidcomm.iterator();
           UnitTransTransaccTe dataej=new UnitTransTransaccTe();
-
+            if (!firsttime){
           while(iteradorvlor.hasNext()){
                 dataej=iteradorvlor.next();
                 System.out.println("el valor del objeto"+dataej.toString());
@@ -120,38 +131,8 @@ final String POSCHECKIN_URI="https://pandoracenter-service/pandoraposcheckin/all
                 }
               uuidIterator=uuidcomm.iterator();
 
-          }
+          }}
 
-
-/*
-          for (UnitTransTransaccTe reco: vlor) {
-
-              for (UUID m:uuidcomm) {
-                  System.out.println("estamos en el elemento "+    reco.toString());
-                  if(reco.getTransate().getTransacc_id().equals(m)){
-                      System.out.println("comparando con el valor "+m.toString());
-                      System.out.println("el valor encontrado vale"+reco.toString());
-
-                      System.out.println("ENCONTRADO VALOR DISTINTO AGREGAMOS!!!!/n/n");
-                      System.out.println("---------------------------------/n");
-                      flag=true;  }
-                  
-              }
-              if(flag==true){
-                  vlorfiltrado.remove(reco);
-                  flag=false;
-              }
-
-
-
-
-
-
-
-              
-              }
-              */
-              
 
           System.out.println("el valor filtrado vale"+vlor.toString());
 

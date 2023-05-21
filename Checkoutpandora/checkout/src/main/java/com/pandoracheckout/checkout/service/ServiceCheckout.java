@@ -2,14 +2,12 @@ package com.pandoracheckout.checkout.service;
 
 import com.netflix.discovery.converters.Auto;
 import com.pandoracheckout.checkout.client.PandoraCenterClientRest;
-import com.pandoracheckout.checkout.entity.Checkout;
-import com.pandoracheckout.checkout.entity.IPKSubStatus;
-import com.pandoracheckout.checkout.entity.IPKstatus;
-import com.pandoracheckout.checkout.entity.PosCheckinFar;
+import com.pandoracheckout.checkout.entity.*;
 import com.pandoracheckout.checkout.repository.IRepoCheckout;
 import com.pandoracheckout.checkout.repository.IRepoPoshchekin;
 import com.pandoracheckout.checkout.repository.IReporPandoraCheck;
 import com.pandoracheckout.checkout.repository.IRepotrucks;
+import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,7 +19,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@Transactional
+
 public class ServiceCheckout implements IServiceCheckout{
     @Autowired
     private PandoraCenterClientRest client;
@@ -37,13 +35,35 @@ public class ServiceCheckout implements IServiceCheckout{
 
 
     @Override
+    @Transactional
     public Checkout savecheckout(Checkout data) {
+        Checkout dtsen=new Checkout();
+        Mytruck mytruck=repotruck.save(data.getPoscheckin().getTruck());
+    //SI O SI GUARDAR EN ORDEN POR HIBERNEATE TIRA ERROR DE CLAVE DUPLICADA U OTRO TIPÓ
 
-        reporPandoraCheck.save(data.getPoscheckin().getPandora_check());
-        repotruck.save(data.getPoscheckin().getTruck());
-        repoPoshchekin.save(data.getPoscheckin());
-        return repo.save(data);
 
+        PandoraCheckFarmer pandoraCheckFarmer=reporPandoraCheck.save(data.getPoscheckin().getPandora_check());
+        PosCheckinFar dtsave=new PosCheckinFar();
+        dtsave.setStatus(data.getPoscheckin().getStatus());
+        dtsave.setPandora_check(pandoraCheckFarmer);
+        dtsave.setTruck(mytruck);
+
+       PosCheckinFar posCheckinFar=repoPoshchekin.save(dtsave);
+       dtsen.setPoscheckin(posCheckinFar);
+       dtsen.setSubstatus(data.getSubstatus());
+       dtsen.setStatus(data.getStatus());
+       return repo.save(dtsen);
+
+    }
+
+    @Override
+    public List<Checkout>  Searchbyfarmer(Long data) {
+        return repo.findByIdFarmerNoStatus(data);
+         }
+
+    @Override
+    public List<Checkout>  Searchbyfactory(Long data) {
+        return  repo.findByIdFactoryNoStatus(data);
     }
 
     @Override
@@ -57,6 +77,7 @@ public class ServiceCheckout implements IServiceCheckout{
     }
 
     @Override
+    @Transactional
     public Checkout EditCheckOut(Checkout data, Long id) {
         Checkout dtsearch= repo.findById(id).orElseThrow();
         dtsearch.setSubstatus(data.getSubstatus());
@@ -91,6 +112,7 @@ public class ServiceCheckout implements IServiceCheckout{
     }
 
     @Override
+    @Transactional
     public List<PosCheckinFar> ReturnAllnoUsed(IPKstatus data) {
         List<PosCheckinFar> dataout=new ArrayList<>();
         List<PosCheckinFar> resultdb=repoPoshchekin.findByIdUserfactoryandStatus(data.getIduserfactory(), data.getIduserfarmer(), data.getStatus());
