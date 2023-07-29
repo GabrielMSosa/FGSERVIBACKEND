@@ -1,0 +1,20 @@
+NOTAS---KEYCLOAD
+
+
+sacamos la ip con minikube ip y agregamos en ingress yaml
+
+
+
+KEYCLOAK_URL=https://keycloak.$(minikube ip).nip.io &&
+echo "" &&
+echo "Keycloak:                 $KEYCLOAK_URL" &&
+echo "Keycloak Admin Console:   $KEYCLOAK_URL/admin" &&
+echo "Keycloak Account Console: $KEYCLOAK_URL/realms/myrealm/account" &&
+echo ""
+NOS TIRA LAS URL 
+
+ 
+Keycloak:                 https://keycloak.192.168.49.2.nip.io
+Keycloak Admin Console:   https://keycloak.192.168.49.2.nip.io/admin
+Keycloak Account Console: https://keycloak.192.168.49.2.nip.io/realms/myrealm/account
+

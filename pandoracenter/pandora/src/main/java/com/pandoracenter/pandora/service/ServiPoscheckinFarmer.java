@@ -42,6 +42,8 @@ public class ServiPoscheckinFarmer implements IServiPoscheckinFarmer {
 
     @Override
     public PosCheckinFar SaveGeneric(PosCheckinFar data) {
+
+
         return repofar.save(data);
     }
 

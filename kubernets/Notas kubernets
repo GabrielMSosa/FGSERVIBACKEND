@@ -128,10 +128,34 @@ kubectl get service my-db -o yaml > my-db.yaml
  buena practica crear los yaml de los deployments  para los microservicios
 kubectl create deployment my-db --image=mysql:8 --port=3306 --dry-run=client -o yaml > deployment-mysql.yaml
 
- 
- 
- 
+
+----------para crear role para que se enlaze con kubernetes
+
+kubectl create clusterrolebinding admin --clusterrole=cluter-admin --serviceaccount=default:default
+
+outptu:
+clusterrolebinding.rbac.authorization.k8s.io/admin created
+-----------IMPORTANTE!!!!!!!!-----------------------------------------
+PARA ABRIR EL PUERTO DE MINIKUBE Y PUEDA USAR EL CLUSTER USO PRIMERO EL COMANDO
+minikube service gateway-service
+
+LUEGO
+
+kubectl port-forward --address 0.0.0.0 service/gateway-service 8080:8080
+despues de keycloack
+kubectl port-forward --address 0.0.0.0 service/gateway-service 8180:8180
 
  
+ kubectl port-forward --address 0.0.0.0 service/keycloak 8080:8080
+ 
+ 
+  kubectl port-forward --address 0.0.0.0 service/msvc-frontend 8073:8073
+ 
+ updateDateTime
+ createDateTime
+ 
+
+ //investigacion keycloak 
+ https://github.com/azrulhasni/Ebanking-JHipster-Keycloak-Nginx-K8
 
 

@@ -84,6 +84,9 @@ docker container run --name pandoraout-service --network minet -p8071:8071 -d pa
 docker container run --name pandoraout-service --network minet  -d pandoraout-service
 
  update   @Type(type = "uuid-char")
+ MSVC-GATEWAY v2(mismo nombre solo que cambio la ruta) FUNCIONOE!!!!
+ ------------------
+ docker build  -t gateway-service . -f ./gatewaylastversion/gateway/Dockerfile
 MSVC-GATEWAY 
 ------------
 por el momento con el comando de abajo hay que actualizar
@@ -117,7 +120,17 @@ docker container run --name eureka-server --network minet -p8761:8761 -d eureka-
 TENTAND DOMINIAN: dev-z35kgcehhbn4fbck.us.auth0.com
 
 DROP TABLE IF EXISTS basculaparametro,datauser_campo ,datouser_factory,matchiduserkvs,mytruck,ofertas,tenomdec,transaccion_te,unit_trans_transacc_te,unittransaccion ;
-      
+     /------------------------------------------------------------------------ 
+MSVC-FRONTEND
+msvc-frontend/msvc-frontend
+docker build  -t msvc-frontend . -f ./msvc-frontend/msvc-frontend/Dockerfile
+docker container run --name msvc-frontend --network minet  -d msvc-frontend
+
+
+
+
+
+
 
 |         
 |       

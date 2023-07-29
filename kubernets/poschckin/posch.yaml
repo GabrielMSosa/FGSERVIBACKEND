@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pandora-service 
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pandora-service 
+  template:
+    metadata:
+      labels:
+        app: pandora-service 
+    
+    spec:
+      containers:
+        - name: pandora-service
+          image: gabrielmsosa/mscvc-pandora-service:v11
+          ports:
+            - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pandora-service 
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    app: pandora-service
+    
+

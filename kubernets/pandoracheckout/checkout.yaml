@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pandoraout-service 
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pandoraout-service 
+  template:
+    metadata:
+      labels:
+        app: pandoraout-service 
+    
+    spec:
+      containers:
+        - name: pandoraout-service 
+          image: gabrielmsosa/mscv-checkout:v16
+          ports:
+            - containerPort: 8071
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pandoraout-service 
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8071
+      protocol: TCP
+      targetPort: 8071
+  selector:
+    app: pandoraout-service 
+    
+

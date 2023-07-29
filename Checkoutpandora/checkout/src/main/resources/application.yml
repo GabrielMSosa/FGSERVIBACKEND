@@ -1,13 +1,13 @@
 server:
   port: 8071  #port number
 
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 30
-    leaseExpirationDurationInSeconds: 90
-  client:
-    serviceUrl:
-      defaultZone: http://host.docker.internal:8761/eureka/
+#eureka:
+ # instance:
+  #  leaseRenewalIntervalInSeconds: 30
+   # leaseExpirationDurationInSeconds: 90
+  #client:
+   # serviceUrl:
+    #  defaultZone: http://host.docker.internal:8761/eureka/
       #defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
 
 spring:

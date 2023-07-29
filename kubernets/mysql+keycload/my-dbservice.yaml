@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: iam-db
+spec:
+  ports:
+  - port: 3316
+    protocol: TCP
+    targetPort: 3316
+  selector:
+    app: iam-db
+  type: ClusterIP
+

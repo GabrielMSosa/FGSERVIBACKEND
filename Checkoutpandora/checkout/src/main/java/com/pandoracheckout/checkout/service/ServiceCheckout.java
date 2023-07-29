@@ -1,6 +1,6 @@
 package com.pandoracheckout.checkout.service;
 
-import com.netflix.discovery.converters.Auto;
+
 import com.pandoracheckout.checkout.client.PandoraCenterClientRest;
 import com.pandoracheckout.checkout.entity.*;
 import com.pandoracheckout.checkout.repository.IRepoCheckout;

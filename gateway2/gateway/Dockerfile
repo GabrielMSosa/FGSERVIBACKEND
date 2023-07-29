@@ -12,7 +12,7 @@ RUN ./mvnw clean package -DskipTests
 FROM openjdk:17-jdk-alpine
 
 WORKDIR /fgservice
-EXPOSE 8080
+EXPOSE 8180
 COPY --from=builder /fgservice/gateway2/gateway/target/gateway-0.0.1-SNAPSHOT.jar .
 
 ENTRYPOINT ["java", "-jar", "gateway-0.0.1-SNAPSHOT.jar"]

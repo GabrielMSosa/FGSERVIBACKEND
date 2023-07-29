@@ -2,7 +2,7 @@ package com.authservice.auth.controllers;
 
 
 import com.authservice.auth.SignupAuteticateServices.ISignupServices;
-import com.authservice.auth.kafka.LoginServicesKafka;
+//import com.authservice.auth.kafka.LoginServicesKafka;
 //import com.authservice.auth.kafka.LoginServicesKafka;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.authservice.auth.models.ERole;
 import com.authservice.auth.models.Role;
 import com.authservice.auth.models.User;
-import com.authservice.auth.models.UserMQ;
+//import com.authservice.auth.models.UserMQ;
 import com.authservice.auth.payload.request.LoginRequest;
 import com.authservice.auth.payload.request.SignUpFullDataRequest;
 import com.authservice.auth.payload.request.SignupRequest;
@@ -39,8 +39,8 @@ import com.authservice.auth.security.jwt.JwtUtils;
 import com.authservice.auth.security.services.UserDetailsImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import org.springframework.context.annotation.Lazy;
-import org.springframework.kafka.core.KafkaTemplate;
+//import org.springframework.context.annotation.Lazy;
+//import org.springframework.kafka.core.KafkaTemplate;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -66,8 +66,8 @@ public class AuthController {
   @Autowired
   JwtUtils jwtUtils;
 
-  @Autowired
-  LoginServicesKafka servikafka;
+  //@Autowired
+  //LoginServicesKafka servikafka;
 
   
   
@@ -85,8 +85,8 @@ public class AuthController {
     List<String> roles = userDetails.getAuthorities().stream()
         .map(item -> item.getAuthority())
         .collect(Collectors.toList());
-      UserMQ valor=new UserMQ(loginRequest.getUsername());
-      servikafka.createLoginOrder(valor);
+      //UserMQ valor=new UserMQ(loginRequest.getUsername());
+     // servikafka.createLoginOrder(valor);
 		
         
     return ResponseEntity.ok(new JwtResponse(jwt, 

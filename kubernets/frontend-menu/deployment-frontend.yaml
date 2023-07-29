@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msvc-frontend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: msvc-frontend
+  template:
+    metadata:
+      labels:
+        app: msvc-frontend
+    
+    spec:
+      containers:
+        - name: msvc-frontend
+          image: gabrielmsosa/msvc-frontend:v13
+          ports:
+            - containerPort: 8073
+    
+

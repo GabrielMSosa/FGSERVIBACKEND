@@ -105,6 +105,17 @@ unittransaccion,
 user_roles,             
 users;
      
-     
+//------------------------------------------
+NOTAS PARA IMPLEMENTAR KEYCLOAK EN KUBERNETES Y MINIKUBE
+
+LEVANTAR EL SERVICIO DE MINIKUBE CON 
+
+kubectl port-forward --address 0.0.0.0 service/gateway-service 8080:8080
+
+para pruebas levantamos mysql
+kubectl port-forward --address 0.0.0.0 service/my-db 3306:3306
+
+
+
      
 

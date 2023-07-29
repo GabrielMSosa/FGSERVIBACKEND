@@ -1,8 +1,7 @@
 
 package com.pandoracheckin.farmer.controller;
 
-import com.netflix.discovery.EurekaClient;
-import com.netflix.discovery.converters.Auto;
+
 import com.pandoracheckin.farmer.ClienHttp.ClientAuth;
 import com.pandoracheckin.farmer.ClienHttp.ClientFarmer;
 import com.pandoracheckin.farmer.ClienHttp.PandoraCenterClient;

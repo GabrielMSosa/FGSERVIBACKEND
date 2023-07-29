@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.authservice.auth.kafka;
+/*package com.authservice.auth.kafka;
 
 import com.authservice.auth.models.User;
 import com.authservice.auth.models.UserMQ;
@@ -22,10 +22,9 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-/**
+
  *
  * @author gabriel
- */
 
 
 @Configuration
@@ -64,8 +63,6 @@ public class Config {
         return new KafkaTemplate<String, UserMQ>(producerFactory1());
     }
 
-        
-      */   
 
         
     @Bean
@@ -77,4 +74,4 @@ public class Config {
                 .build();
     }
 
-}
+} */

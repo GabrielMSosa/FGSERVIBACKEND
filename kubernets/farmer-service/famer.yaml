@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: farmer-service
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: farmer-service
+  template:
+    metadata:
+      labels:
+        app: farmer-service
+    
+    spec:
+      containers:
+        - name: farmer-service
+          image: gabrielmsosa/msvc-farmer:v5
+          ports:
+            - containerPort: 8087
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: farmer-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8087
+      protocol: TCP
+      targetPort: 8087
+  selector:
+    app: farmer-service
+    
+

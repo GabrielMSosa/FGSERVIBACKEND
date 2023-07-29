@@ -3,12 +3,16 @@ package com.pandoracheckout.checkout.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +34,13 @@ public class Checkout {
     @JoinColumn(name = "poscheckin_id")
     private PosCheckinFar poscheckin;
 
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createDateTime;
 
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updateDateTime;
 
 
 

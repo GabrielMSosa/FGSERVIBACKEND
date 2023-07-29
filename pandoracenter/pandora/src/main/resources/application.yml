@@ -43,16 +43,16 @@
     #  key-serializer: org.apache.kafka.common.serialization.StringSerializer
      # value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       
- eureka:   
+ #eureka:
 # application:
 #    name: auth-service
 
-  instance:
-    leaseRenewalIntervalInSeconds: 30
-    leaseExpirationDurationInSeconds: 90
-  client:
-    serviceUrl:
-      defaultZone: http://eureka-server:8761/eureka/
+ # instance:
+   # leaseRenewalIntervalInSeconds: 30
+   # leaseExpirationDurationInSeconds: 90
+  #client:
+  #  serviceUrl:
+   #   defaultZone: http://eureka-server:8761/eureka/
       #defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
  
       #org.apache.kafka.common.serialization.StringSerializer  

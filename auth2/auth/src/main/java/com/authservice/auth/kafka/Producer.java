@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.authservice.auth.kafka;
+/*package com.authservice.auth.kafka;
 
 import com.authservice.auth.models.User;
 import com.authservice.auth.models.UserMQ;
@@ -15,10 +15,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-/**
+
  *
  * @author gabriel
- */
+
 
 @Slf4j
 @Component
@@ -46,4 +46,4 @@ public class Producer {
 
         return "message sent";
     }
-}
+}*/

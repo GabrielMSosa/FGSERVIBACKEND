@@ -1,0 +1,101 @@
+server:
+  port: 8080
+
+#eureka:
+  #client:
+    #
+   # serviceUrl:
+    #  defaultZone: http://host.docker.internal:8761/eureka/
+      # defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+      #defaultZone: http://localhost:8083/eureka
+
+management:
+  endpoint.gateway.enabled: true
+  endpoints.web.exposure.include: gateway
+
+spring:
+  application.name: gateway-service
+  cloud:
+    gateway:
+      discovery.locator.enabled: true
+      routes:
+        - id: service-menu
+          uri: lb://auth-service
+          predicates:
+            Path=/fronend/**
+          filters:
+            - AuthFilter
+
+        - id: service-PData
+          uri: lb://auth-service
+          predicates:
+            Path=/pdata/**
+          filters:
+            - AuthFilter
+
+        - id: service-farmer
+          uri: lb://farmer-service
+          predicates:
+            Path=/farmer/**
+          filters:
+            - AuthFilter
+        - id: service-unit
+          uri: lb://farmer-service
+          predicates:
+            Path=/unit/**
+          filters:
+            - AuthFilter
+
+        - id: service-factory
+          uri: lb://factory-service
+          predicates:
+            Path=/factory/**
+          filters:
+            - AuthFilter
+        - id: service-pandoraout
+          uri: lb://pandoraout-service
+          predicates:
+            Path=/pandoraout/**
+          filters:
+            - AuthFilter
+        - id: service-auth
+          uri: lb://auth-service
+          predicates:
+            Path=/auth/**
+        - id: service-auth
+          uri: lb://auth-service
+          predicates:
+            Path=/api/**
+          filters:
+            - AuthFilter
+        - id: service-pandora
+          uri: lb://pandora-service
+          predicates:
+            Path=/pandora/**
+          filters:
+            - AuthFilter
+        - id: pandoracenter-service
+          uri: lb://pandoracenter-service
+          predicates:
+            Path=/pandoraposcheckin/**
+          filters:
+            - AuthFilter
+
+
+
+
+              #eureka:
+
+
+              # serviceUrl:
+
+
+      #eureka:
+      #client:
+      #  register-with-eureka: false
+      #   serviceUrl:
+      #       defaultZone: http://host.docker.internal:8761/eureka/
+      #dfaultZone: http://eurekaserver:8761/eureka/
+      #defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+
+

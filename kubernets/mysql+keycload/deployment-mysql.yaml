@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: iam-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iam-db 
+  template:
+    metadata: 
+      labels:
+        app: iam-db
+    spec:
+      containers:
+      - image: mysql:8
+        name: iam-db
+        ports:
+        - containerPort: 3316
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom: 
+            configMapKeyRef:
+              name: auth-service
+              key: password
+
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: auth-service
+              key : database
+
+        volumeMounts:
+          - name: iam-data-mysql
+            mountPath: /var/lib/mysql
+      volumes:
+        - name: iam-data-mysql
+          persistentVolumeClaim:
+            claimName: iam-mysql-pvc
+

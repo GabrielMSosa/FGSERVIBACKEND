@@ -1,0 +1,23 @@
+base de datoS
+inicializar db
+
+INSERT INTO bootdb.roles(id,name) values
+('1' , 'ROLE_USER'),
+(  '2' , 'ROLE_MODERATOR'),
+(  '3' , 'ROLE_ADMIN'     ),
+(  '4' , 'ROLE_FACTORY'    ),
+(  '5' , 'ROLE_PROPIETARIOS' );
+
+
+INSERT INTO bootdb.menu VALUES
+  ('1',  'people', '/secaderov2'    , 'Comprar T'),
+  ('2',  'supervised_user_circle', '/selltev2'      , 'Vender Te'),
+  ('3',  'inventory_2', '/formfarm'      , 'Declarar'),
+  ('4',  'local_shipping', '/mispendientes' , 'Para enviar'),
+  ('5',  'receipt', '/mispedidosv2'  , 'Mis pedidos'),
+  ('6',  'calculate', '/calculate'     , 'Sales'),
+  ('7',  'analytics', '/reports'       , 'Report'),
+  ('8',  'no_crash', '/addtruck'      , 'Mis transportes');
+  
+  
+  

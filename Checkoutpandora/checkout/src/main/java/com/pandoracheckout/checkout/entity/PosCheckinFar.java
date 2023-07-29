@@ -10,8 +10,12 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 /**
  *
@@ -42,8 +46,16 @@ public class PosCheckinFar {
     @JoinColumn(name = "truck_id")
     private Mytruck truck;
 
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createDateTime;
+
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updateDateTime;
 
 
-    
-    
+
+
+
 }
