@@ -1,0 +1,17 @@
+
+docker network create keycloak-and-mysql-network
+
+docker network create keycloak-network
+
+docker run --name mysql -d --net keycloak-network -p3306:3308 -e MYSQL_DATABASE=keycloak -e MYSQL_USER=keycloak -e MYSQL_PASSWORD=password -e MYSQL_ROOT_PASSWORD=root_password -v mysql:/var/lib/mysql mysql
+
+
+docker run --name keycloak --net keycloak-network -p 9090:8080 -d jboss/keycloak
+ 	
+
+If you used a different name for the MySQL instance to mysql you need to specify the DB_ADDR environment variable.
+
+en SOf
+docker run -p 9090:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e DB_VENDOR=MYSQL -e DB_PORT=3306 -e DB_DATABASE=keycloak -e DB_USER=keycloak -e DB_PASSWORD=keycloak  jboss/keycloak
+
+docker run --name keycloak --net keycloak-network

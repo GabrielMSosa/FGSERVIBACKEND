@@ -1,13 +1,14 @@
 server:
 
 
-#eureka:
-  #client:
-    #
-   # serviceUrl:
-    #  defaultZone: http://host.docker.internal:8761/eureka/
-      # defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
-      #defaultZone: http://localhost:8083/eureka
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:8761/eureka/
+
 
 management:
   endpoint.gateway.enabled: true
@@ -17,49 +18,49 @@ spring:
   application.name: gateway-service
   cloud:
     gateway:
-      default-filters:
-        - TokenRelay
+  #    default-filters:
+  #     - TokenRelay
       discovery.locator.enabled: true
       routes:
         - id: service-menu
           uri: lb://msvc-frontend
           predicates:
             Path=/frontend/**
-          #filters:
-           # - AuthFilter
+          filters:
+            - AuthFilter
 
         - id: service-PData
           uri: lb://auth-service
           predicates:
             Path=/pdata/**
-            #  filters:
-        #   - AuthFilter
+          filters:
+           - AuthFilter
 
         - id: service-farmer
           uri: lb://farmer-service
           predicates:
             Path=/farmer/**
-            #  filters:
-        #    - AuthFilter
+          filters:
+            - AuthFilter
         - id: service-unit
           uri: lb://farmer-service
           predicates:
             Path=/unit/**
-            #  filters:
-        #   - AuthFilter
+          filters:
+           - AuthFilter
 
         - id: service-factory
           uri: lb://factory-service
           predicates:
             Path=/factory/**
-            # filters:
-          #  - AuthFilter
+          filters:
+            - AuthFilter
         - id: service-pandoraout
           uri: lb://pandoraout-service
           predicates:
             Path=/pandoraout/**
-            # filters:
-        #   - AuthFilter
+          filters:
+           - AuthFilter
         - id: service-auth
           uri: lb://auth-service
           predicates:
@@ -68,20 +69,20 @@ spring:
           uri: lb://auth-service
           predicates:
             Path=/api/**
-            #  filters:
-        #    - AuthFilter
+          filters:
+            - AuthFilter
         - id: service-pandora
           uri: lb://pandora-service
           predicates:
             Path=/pandora/**
-            # filters:
-        #     - AuthFilter
+          filters:
+            - AuthFilter
         - id: pandoracenter-service
           uri: lb://pandoracenter-service
           predicates:
             Path=/pandoraposcheckin/**
-            #   filters:
-            #      - AuthFilter
+          filters:
+           - AuthFilter
 
 
 

@@ -1,6 +1,6 @@
 package com.gateway.gateway.config;
 
-/*
+
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
@@ -51,4 +51,3 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
         // empty class as I don't need any particular configuration
     }
 }
-*/

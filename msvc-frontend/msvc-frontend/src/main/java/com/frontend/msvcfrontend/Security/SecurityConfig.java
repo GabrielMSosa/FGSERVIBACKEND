@@ -1,9 +1,9 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+ /*
 package com.frontend.msvcfrontend.Security;
-
+ 
 
 import com.nimbusds.jose.shaded.gson.internal.LinkedTreeMap;
 import java.util.ArrayList;
@@ -68,3 +68,4 @@ public class SecurityConfig {
         return jwtAuthenticationConverter;
     }
 }
+*/

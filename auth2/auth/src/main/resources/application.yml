@@ -1,18 +1,26 @@
-## YAML Template.
----
-#spring:
-#  application:
-#    name: auth-service
-#server:
-#  port: 8086
+spring:
+  application:
+  name: auth-service
+server:
+  port: 8086
 #eureka:
-  #client:
-    #serviceUrl:
-      #defaultZone: http://eureka-server:8761/eureka
-      
-      
-      
-      
+# client:
+#  registerWithEureka: true
+#  fetchRegistry: true
+#  instance:
+#   leaseRenewalIntervalInSeconds: 30
+#   leaseExpirationDurationInSeconds: 90
+#  serviceUrl:
+#     defaultZone: http://localhost:8761/eureka
+     #defaultZone: http://host.docker.internal:8761/eureka
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:8761/eureka/
 # spring:
  
 #Tomcat Embedded Server Configuration
@@ -74,8 +82,8 @@
   #name: t.login.access
 
  
- logging:
-  level:
-    com.example.howtodoinjava: DEBUG
+ #logging:
+  #level:
+   # com.example.howtodoinjava: DEBUG
    
       

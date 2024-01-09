@@ -94,7 +94,7 @@ por el momento con el comando de abajo hay que actualizar
 
 docker build  -t gateway-service . -f ./gateway2/gateway/Dockerfile
 
-docker container run --name gateway-service --network minet -p8080:8080 -d gateway-service
+docker container run --name gateway-service --network minet -p8180:8180 -d gateway-service
 
 docker container run --name gateway-service --network minet -p8080:8080 -d gateway-service
 
@@ -124,7 +124,7 @@ DROP TABLE IF EXISTS basculaparametro,datauser_campo ,datouser_factory,matchidus
 MSVC-FRONTEND
 msvc-frontend/msvc-frontend
 docker build  -t msvc-frontend . -f ./msvc-frontend/msvc-frontend/Dockerfile
-docker container run --name msvc-frontend --network minet  -d msvc-frontend
+docker container run --name msvc-frontend --network minet -p8073:8073 -d msvc-frontend
 
 
 

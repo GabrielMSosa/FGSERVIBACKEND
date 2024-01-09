@@ -2,11 +2,9 @@
 ---
 spring:
   application:
-  name: factory-service
+  name: msvc-frontend
 server:
-  port: 8085
-
-
+  port: 8073
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 1
@@ -14,6 +12,3 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://host.docker.internal:8761/eureka/
- 
-      
-      
