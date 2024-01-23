@@ -1,5 +1,3 @@
-
-
 FROM openjdk:17-jdk-alpine as builder
 WORKDIR /fgservice/Eureka/EurekaServer
 COPY ./Eureka/EurekaServer/pom.xml .

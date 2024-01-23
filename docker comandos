@@ -19,6 +19,7 @@ docker logs --follow heuristic_turing
 borrar contenedor
 docker rm  modest_hellman
 
+docker network create --driver bridge minet
 
 @RequestMapping("/checkout")
 public class CheckoutController {
