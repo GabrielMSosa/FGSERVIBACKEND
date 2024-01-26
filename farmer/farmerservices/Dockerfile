@@ -3,6 +3,7 @@ WORKDIR /fgservice/farmer/farmerservices
 COPY ./farmer/farmerservices/pom.xml .
 COPY ./farmer/farmerservices/mvnw .
 COPY ./farmer/farmerservices/.mvn ./.mvn
+RUN dos2unix ./mvnw
 RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip
 
 COPY ./farmer/farmerservices/src ./src

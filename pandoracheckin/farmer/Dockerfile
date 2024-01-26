@@ -5,6 +5,7 @@ WORKDIR /fgservice/pandoracheckin/farmer
 COPY ./pandoracheckin/farmer/pom.xml .
 COPY ./pandoracheckin/farmer/mvnw .
 COPY ./pandoracheckin/farmer/.mvn ./.mvn
+RUN dos2unix ./mvnw
 RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip
 
 COPY ./pandoracheckin/farmer/src ./src

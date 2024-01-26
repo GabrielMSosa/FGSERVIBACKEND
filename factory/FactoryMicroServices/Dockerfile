@@ -4,6 +4,7 @@ WORKDIR /fgservice/factory/FactoryMicroServices
 COPY ./factory/FactoryMicroServices/pom.xml .
 COPY ./factory/FactoryMicroServices/mvnw .
 COPY ./factory/FactoryMicroServices/.mvn ./.mvn
+RUN dos2unix ./mvnw
 RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip
 
 COPY ./factory/FactoryMicroServices/src ./src

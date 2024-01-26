@@ -3,6 +3,7 @@ WORKDIR /fgservice/pandoracenter/pandora
 COPY ./pandoracenter/pandora/pom.xml .
 COPY ./pandoracenter/pandora/mvnw .
 COPY ./pandoracenter/pandora/.mvn ./.mvn
+RUN dos2unix ./mvnw
 RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip
 
 COPY ./pandoracenter/pandora/src ./src

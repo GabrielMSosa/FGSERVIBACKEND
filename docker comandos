@@ -72,13 +72,10 @@ docker container run --name farmer-service --network minet -d farmer-service
  MSVC-FACTORY
  -----------------
 
- 
  docker build -t factory-service . -f ./factory/FactoryMicroServices/Dockerfile
  docker container run --name factory-service --network minet  -d factory-service
  
- 
-
-MSCV-CHECKOUT
+ MSCV-CHECKOUT
 -------------
 docker build  -t pandoraout-service . -f ./Checkoutpandora/checkout/Dockerfile
 docker container run --name pandoraout-service --network minet -p8071:8071 -d pandoraout-service

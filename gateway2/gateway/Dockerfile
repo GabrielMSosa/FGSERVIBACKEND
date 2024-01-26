@@ -3,6 +3,7 @@ WORKDIR /fgservice/gateway2/gateway
 COPY ./gateway2/gateway/pom.xml .
 COPY ./gateway2/gateway/mvnw .
 COPY ./gateway2/gateway/.mvn ./.mvn
+RUN dos2unix ./mvnw
 RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip
 
 COPY ./gateway2/gateway/src ./src

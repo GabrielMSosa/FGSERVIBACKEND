@@ -3,6 +3,7 @@ WORKDIR /fgservice/Checkoutpandora/checkout
 COPY ./Checkoutpandora/checkout/pom.xml .
 COPY ./Checkoutpandora/checkout/mvnw .
 COPY ./Checkoutpandora/checkout/.mvn ./.mvn
+RUN dos2unix ./mvnw
 RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip
 
 COPY ./Checkoutpandora/checkout/src ./src

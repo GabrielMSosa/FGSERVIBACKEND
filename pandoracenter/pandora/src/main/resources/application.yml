@@ -1,5 +1,23 @@
 ## YAML Template.
----
+spring:
+  application:
+  name: pandoracenter-service
+server:
+  port: 6086
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:8761/eureka/
+
+topic:
+  name: t.pandora.poscheckin
+ 
+logging:
+  level:
+    com.example.howtodoinjava: DEBUG
 #spring:
 #  application:
 #    name: auth-service
@@ -26,13 +44,7 @@
 #     serviceUrl:
 #      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
       
- server:
-  port: 6086  #port number
-  
-  
- 
- spring:
-  
+
   
   #kafka:
     #bootstrap-servers: localhost:9092 
@@ -70,11 +82,5 @@
       
   
 
- topic:
-  name: t.pandora.poscheckin
- 
- logging:
-  level:
-    com.example.howtodoinjava: DEBUG
    
       
