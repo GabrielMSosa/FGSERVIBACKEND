@@ -23,9 +23,15 @@ spring:
       discovery.locator.enabled: true
       routes:
         - id: service-menu
-          uri: lb://msvc-frontend
+          uri: lb://auth-service
           predicates:
-            Path=/frontend/**
+            Path=/fronend/**
+          filters:
+            - AuthFilter
+        - id: service-menu-go
+          uri: lb://menu-frontend-go
+          predicates:
+            Path=/api/v1/menu/**
           filters:
             - AuthFilter
 

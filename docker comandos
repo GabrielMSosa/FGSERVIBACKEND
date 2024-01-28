@@ -96,6 +96,14 @@ docker container run --name gateway-service --network minet -p8180:8180 -d gatew
 
 docker container run --name gateway-service --network minet -p8080:8080 -d gateway-service
 
+
+
+menu-frontend-go 
+Ejecutamos en la carpeta del proyecto
+docker build --tag menu-frontend-go .
+docker container run --name menu-frontend-go --network minet -p8080:8080 -d menu-frontend-go
+
+
 MSCVC-PANDORA SERVICE(EX POSCHECKIN)
 ------------------------------------
 docker build  -t pandora-service . -f ./pandoracheckin/farmer/Dockerfile

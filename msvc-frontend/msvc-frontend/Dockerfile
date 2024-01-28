@@ -3,6 +3,7 @@ WORKDIR /fgservice/msvc-frontend/msvc-frontend
 COPY ./msvc-frontend/msvc-frontend/pom.xml .
 COPY ./msvc-frontend/msvc-frontend/mvnw .
 COPY ./msvc-frontend/msvc-frontend/.mvn ./.mvn
+RUN dos2unix ./mvnw
 RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip
 
 COPY ./msvc-frontend/msvc-frontend/src ./src
