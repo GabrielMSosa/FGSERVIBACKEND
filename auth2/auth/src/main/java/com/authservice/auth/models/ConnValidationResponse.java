@@ -5,6 +5,7 @@
 package com.authservice.auth.models;
 
 import java.util.List;
+import java.util.Set;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -26,5 +27,6 @@ public class ConnValidationResponse {
     private String methodType;
     private String username;
     private String token;
-    private List<GrantedAuthority> authorities;
+    private Set<String> roles;
+ 
 }
