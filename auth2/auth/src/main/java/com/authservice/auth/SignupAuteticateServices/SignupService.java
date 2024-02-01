@@ -29,9 +29,10 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class SignupService implements ISignupServices {
+
     @Autowired
     private UserRepository userRepository;
-     
+
     @Autowired
     private IRepoDataUserCampo repocampo;
     @Autowired
@@ -41,124 +42,89 @@ public class SignupService implements ISignupServices {
 
     @Override
     public ResponsePersonalData ReturnPersonalData(Long id) {
-        ResponsePersonalData dataout=new ResponsePersonalData();
-        EntityMatchIdUserKVS data1=repkvs.findByPkuser(id);//aca obtenemos el id de las entidades Datauser_campo o Datouser_factory del kvs 
-        Datauser_campo datcam=new Datauser_campo();
-        
-        
-        
-        Datouser_factory datfac=new Datouser_factory();
-        
-        
-        if(data1.getTipo().equals("Propietario de Secadero")){
+        ResponsePersonalData dataout = new ResponsePersonalData();
+        EntityMatchIdUserKVS data1 = repkvs.findByPkuser(id);//aca obtenemos el id de las entidades Datauser_campo o Datouser_factory del kvs 
+        Datauser_campo datcam = new Datauser_campo();
+        Datouser_factory datfac = new Datouser_factory();
+        if (data1.getTipo().equals("Propietario de Secadero")) {
             System.out.println("entramos en el if de secadero");
-                
-            datfac=repofactory.findById(data1.getPkdata()).orElseThrow();
+            datfac = repofactory.findById(data1.getPkdata()).orElseThrow();
             dataout.setId(datfac.getId());
             dataout.setName(datfac.getName_company());
             dataout.setCellphone(datfac.getTelefono());
-        
-        
-        
+            dataout.setCenter(data1.getCenter());
         }
-        
-        
-        if(data1.getTipo().equals("Propietario de Campo")){
-            System.out.println(" entramos en el if de campo");
-            datcam=repocampo.findById(data1.getPkdata()).orElseThrow();
 
-            
-            
+        if (data1.getTipo().equals("Propietario de Campo")) {
+            System.out.println(" entramos en el if de campo");
+            datcam = repocampo.findById(data1.getPkdata()).orElseThrow();
             dataout.setId(datcam.getId());
             dataout.setName(datcam.getTitulo());
             dataout.setCellphone(datcam.getTelefono());
-        
-        
-        
+            dataout.setCenter(data1.getCenter());
         }
-               
-        
-        
         return dataout;
-        
     }
-    
-    
-    
+
     @Override
     public String CreateUserFullData(User user, SignUpFullDataRequest signUpFull) {
-        User data=new User();
-        Datouser_factory usrfac=new Datouser_factory();
-        Datouser_factory usrfacreturn=new Datouser_factory();
-        
-        Datauser_campo usrcam=new Datauser_campo();
-        Datauser_campo usrcamretur=new Datauser_campo();
+        User data = new User();
+        Datouser_factory usrfac = new Datouser_factory();
+        Datouser_factory usrfacreturn = new Datouser_factory();
+        Datauser_campo usrcam = new Datauser_campo();
+        Datauser_campo usrcamretur = new Datauser_campo();
         System.out.println(user.toString());
         System.out.println(signUpFull);
-        Set<TeNomDec> te=new HashSet<>();
-        Set<Ofertas> ofer=new HashSet<>();
-               
-        EntityMatchIdUserKVS kvsUser=new EntityMatchIdUserKVS();
-                
-        if(signUpFull.getTipousuerValue().equals("Propietario de Campo")){
-        
-            
+        Set<TeNomDec> te = new HashSet<>();
+        Set<Ofertas> ofer = new HashSet<>();
+
+        EntityMatchIdUserKVS kvsUser = new EntityMatchIdUserKVS();
+
+        if (signUpFull.getTipousuerValue().equals("Propietario de Campo")) {
+
             usrcam.setTelefono(signUpFull.getCelphone());
-            usrcam.setTitulo("Campo de "+signUpFull.getName()+" "+signUpFull.getLastname());
+            usrcam.setTitulo("Campo de " + signUpFull.getName() + " " + signUpFull.getLastname());
             usrcam.setTenominal(te);
             usrcam.setFecha_creacion(signUpFull.getDatebrith());
-            usrcamretur=repocampo.save(usrcam);
-            data=userRepository.save(user);
+            usrcamretur = repocampo.save(usrcam);
+            data = userRepository.save(user);
             kvsUser.setPkdata(usrcamretur.getId());
+            kvsUser.setCenter(user.getCenter());
             kvsUser.setPkuser(data.getId());
             kvsUser.setTipo(signUpFull.getTipousuerValue());
             repkvs.save(kvsUser);
-                   
-            
+
             System.out.println("estamos en el servvi propietario campo");
-            
+
             return "Usuario creado con exito";
-            
-            
-            
-        
+
         }
-        if(signUpFull.getTipousuerValue().equals("Propietario de Secadero")){
-        
+        if (signUpFull.getTipousuerValue().equals("Propietario de Secadero")) {
+
             usrfac.setFecha_creacion(signUpFull.getDatebrith());
             usrfac.setTelefono(signUpFull.getCelphone());
             usrfac.setName_company(signUpFull.getNameFactory());
             usrfac.setOfertas(ofer);
-            usrfacreturn=repofactory.save(usrfac);
- 
-            
-            
-            
-            data=userRepository.save(user);
-            
+            usrfacreturn = repofactory.save(usrfac);
+
+            data = userRepository.save(user);
+
             kvsUser.setPkdata(usrfacreturn.getId());
             kvsUser.setPkuser(data.getId());
+            kvsUser.setCenter(user.getCenter());
+
             kvsUser.setTipo(signUpFull.getTipousuerValue());
-            
+
             repkvs.save(kvsUser);
-                   
-            
-            
-            
+
             System.out.println("estamos en el servi secadero");
             return "Usuario creado con exito";
-        
-        
-        
+
+        } else {
+            return "fail";
+
+            // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
-        
-        else{
-        return "fail";
-        
-        
-        
-       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
     }
-    
-}
 }

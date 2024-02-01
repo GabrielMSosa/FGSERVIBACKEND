@@ -16,12 +16,12 @@ server:
 
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 2
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 20
   client:
     serviceUrl:
-      defaultZone: http://host.docker.internal:8761/eureka/
-      #defaultZone: http://localhost:8761/eureka
+      #defaultZone: http://host.docker.internal:8761/eureka/
+      defaultZone: http://localhost:8761/eureka
 # spring:
  
 #Tomcat Embedded Server Configuration

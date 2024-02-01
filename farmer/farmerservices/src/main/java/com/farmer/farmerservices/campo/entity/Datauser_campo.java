@@ -63,8 +63,8 @@ public class Datauser_campo {
     */
 
 
-        @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-        @JoinColumn(name = "datausercampo_id")  
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "datausercampo_id")  
     private Set<TeNomDec> tenominal=new HashSet<>();
     
 

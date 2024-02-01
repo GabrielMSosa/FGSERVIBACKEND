@@ -24,6 +24,7 @@ public class ResponsePersonalData implements Serializable {
     
     private String cellphone;
     
+    private String center;
     
     
     

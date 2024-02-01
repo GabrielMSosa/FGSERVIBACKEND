@@ -2,6 +2,7 @@ package com.authservice.auth.controllers;
 
 
 import com.authservice.auth.SignupAuteticateServices.ISignupServices;
+import com.authservice.auth.models.Center;
 //import com.authservice.auth.kafka.LoginServicesKafka;
 //import com.authservice.auth.kafka.LoginServicesKafka;
 import java.util.HashSet;
@@ -31,6 +32,7 @@ import com.authservice.auth.models.User;
 import com.authservice.auth.payload.request.LoginRequest;
 import com.authservice.auth.payload.request.SignUpFullDataRequest;
 import com.authservice.auth.payload.request.SignupRequest;
+import com.authservice.auth.repository.CenterRepository;
 import com.authservice.auth.response.JwtResponse;
 import com.authservice.auth.response.MessageResponse;
 import com.authservice.auth.repository.RoleRepository;
@@ -38,6 +40,7 @@ import com.authservice.auth.repository.UserRepository;
 import com.authservice.auth.security.jwt.JwtUtils;
 import com.authservice.auth.security.services.UserDetailsImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.util.Optional;
 
 //import org.springframework.context.annotation.Lazy;
 //import org.springframework.kafka.core.KafkaTemplate;
@@ -65,6 +68,9 @@ public class AuthController {
 
   @Autowired
   JwtUtils jwtUtils;
+  
+  @Autowired
+  CenterRepository centerRepository;
 
   //@Autowired
   //LoginServicesKafka servikafka;
@@ -77,11 +83,16 @@ public class AuthController {
 
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
+      Optional<User> usr=userRepository.findByUsername(loginRequest.getUsername());
     SecurityContextHolder.getContext().setAuthentication(authentication);
-    String jwt = jwtUtils.generateJwtToken(authentication);
-    
-    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();    
+    String mcenter="";
+      for (Center object : usr.get().getCenter()) {
+          mcenter=object.getCenter();
+      }
+    String jwt = jwtUtils.generateJwtToken(authentication,mcenter);
+      System.out.println(authentication);
+    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();   
+      System.out.println(userDetails);
     List<String> roles = userDetails.getAuthorities().stream()
         .map(item -> item.getAuthority())
         .collect(Collectors.toList());
@@ -93,7 +104,7 @@ public class AuthController {
                          userDetails.getId(), 
                          userDetails.getUsername(), 
                          userDetails.getEmail(), 
-                         roles));
+                         roles,mcenter));
     
     
   }
@@ -123,6 +134,10 @@ public class AuthController {
      //aca vamos a hacer las validaciones de roles segun el tipo 
      String tipouser=signUpFullDataRequest.getTipousuerValue();
      Set<Role> roles = new HashSet<>();
+      Set<Center> center = new HashSet<>();
+      Center item = new Center();
+      item.setCenter(signUpFullDataRequest.getNameFactory());
+      center.add(item);
      if(tipouser==null){
      
          
@@ -134,19 +149,19 @@ public class AuthController {
      }
      
      if(tipouser.equals("Propietario de Campo")){
+         user.setCenter(center);
           Role propRole = roleRepository.findByName(ERole.ROLE_PROPIETARIOS)
               .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
           roles.add(propRole);
          System.out.println("elegimos propietarios");
      
-     
      }
      
      if(tipouser.equals("Propietario de Secadero")){
+         user.setCenter(center);
           Role factRole = roleRepository.findByName(ERole.ROLE_FACTORY)
               .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
           roles.add(factRole);
-         
          System.out.println("secadero");
      }
      
@@ -175,12 +190,18 @@ public class AuthController {
     }
 
     // Create new user's account
-    User user = new User(signUpRequest.getUsername(), 
+    User user = new User(signUpRequest.getUsername(),
+         
                signUpRequest.getEmail(),
+          
                encoder.encode(signUpRequest.getPassword()));
 
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
+          Set<Center> center = new HashSet<>();
+      Center item = new Center();
+      item.setCenter(signUpRequest.getCenter());
+      center.add(item);
 
     if (strRoles == null) {
       Role userRole = roleRepository.findByName(ERole.ROLE_USER)
@@ -222,7 +243,7 @@ public class AuthController {
         }
       });
     }
-
+    user.setCenter(center);
     user.setRoles(roles);
     userRepository.save(user);
 
