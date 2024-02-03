@@ -33,5 +33,10 @@ public class Center {
     @Size(max = 50)
     @Column(name = "center")
     private String center;
+    
+    @NotBlank
+    @Size(max = 50)
+    @Column(name = "validwithOwner")
+    private Boolean validWithOwner;
 
 }

@@ -114,7 +114,7 @@ public class AuthController {
  
      //hacemos algunas validaciones
      if(userRepository.existsByUsername(signUpFullDataRequest.getUsername())){
-     
+         System.out.println("el bab viene por aca ");
      return ResponseEntity
              .badRequest()
              .body(new MessageResponse("Error Username is al ready taken!"));
@@ -137,6 +137,7 @@ public class AuthController {
       Set<Center> center = new HashSet<>();
       Center item = new Center();
       item.setCenter(signUpFullDataRequest.getNameFactory());
+      item.setValidWithOwner(false);
       center.add(item);
      if(tipouser==null){
      
@@ -145,7 +146,6 @@ public class AuthController {
           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
       roles.add(userRole);
          System.out.println("vacio");
-     
      }
      
      if(tipouser.equals("Propietario de Campo")){

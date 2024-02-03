@@ -13,8 +13,10 @@ import com.authservice.auth.campo.repository.IRepoDataUserCampo;
 import com.authservice.auth.factory.entity.Datouser_factory;
 import com.authservice.auth.factory.entity.Ofertas;
 import com.authservice.auth.factory.repository.IRepoDatoUser;
+import com.authservice.auth.models.Center;
 import com.authservice.auth.models.User;
 import com.authservice.auth.payload.request.SignUpFullDataRequest;
+import com.authservice.auth.repository.CenterRepository;
 import com.authservice.auth.repository.UserRepository;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,6 +41,9 @@ public class SignupService implements ISignupServices {
     private IRepoDatoUser repofactory;
     @Autowired
     private IRepoKvs repkvs;
+
+    @Autowired
+    private CenterRepository centerRepository;
 
     @Override
     public ResponsePersonalData ReturnPersonalData(Long id) {
@@ -69,6 +74,7 @@ public class SignupService implements ISignupServices {
     @Override
     public String CreateUserFullData(User user, SignUpFullDataRequest signUpFull) {
         User data = new User();
+        System.out.println(user.toString());
         Datouser_factory usrfac = new Datouser_factory();
         Datouser_factory usrfacreturn = new Datouser_factory();
         Datauser_campo usrcam = new Datauser_campo();
@@ -77,19 +83,20 @@ public class SignupService implements ISignupServices {
         System.out.println(signUpFull);
         Set<TeNomDec> te = new HashSet<>();
         Set<Ofertas> ofer = new HashSet<>();
-
+        Center center = new Center();
         EntityMatchIdUserKVS kvsUser = new EntityMatchIdUserKVS();
 
         if (signUpFull.getTipousuerValue().equals("Propietario de Campo")) {
-
+            center.setCenter(signUpFull.getNameFactory());
             usrcam.setTelefono(signUpFull.getCelphone());
             usrcam.setTitulo("Campo de " + signUpFull.getName() + " " + signUpFull.getLastname());
             usrcam.setTenominal(te);
             usrcam.setFecha_creacion(signUpFull.getDatebrith());
+          //  retcenter = centerRepository.save(center);
             usrcamretur = repocampo.save(usrcam);
             data = userRepository.save(user);
             kvsUser.setPkdata(usrcamretur.getId());
-            kvsUser.setCenter(user.getCenter());
+            kvsUser.setCenter(center.getCenter());
             kvsUser.setPkuser(data.getId());
             kvsUser.setTipo(signUpFull.getTipousuerValue());
             repkvs.save(kvsUser);
@@ -100,29 +107,24 @@ public class SignupService implements ISignupServices {
 
         }
         if (signUpFull.getTipousuerValue().equals("Propietario de Secadero")) {
-
+            center.setCenter(signUpFull.getNameFactory());
             usrfac.setFecha_creacion(signUpFull.getDatebrith());
             usrfac.setTelefono(signUpFull.getCelphone());
             usrfac.setName_company(signUpFull.getNameFactory());
             usrfac.setOfertas(ofer);
+           // retcenter = centerRepository.save(center);
             usrfacreturn = repofactory.save(usrfac);
-
             data = userRepository.save(user);
-
+            
             kvsUser.setPkdata(usrfacreturn.getId());
             kvsUser.setPkuser(data.getId());
-            kvsUser.setCenter(user.getCenter());
-
+            kvsUser.setCenter(center.getCenter());
             kvsUser.setTipo(signUpFull.getTipousuerValue());
-
             repkvs.save(kvsUser);
-
             System.out.println("estamos en el servi secadero");
             return "Usuario creado con exito";
-
         } else {
             return "fail";
-
             // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
 
